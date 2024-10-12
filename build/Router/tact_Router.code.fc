@@ -1,0 +1,418 @@
+#pragma version =0.4.4;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "tact_Router.headers.fc";
+#include "tact_Router.stdlib.fc";
+#include "tact_Router.native.fc";
+#include "tact_Router.constants.fc";
+#include "tact_Router.storage.fc";
+
+;;
+;; Contract Router functions
+;;
+
+(int, slice, cell, int) $Router$_contract_init(slice $admin) impure inline_ref {
+    var (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)) = (null(), null(), null(), false);
+    $self'isLocked = false;
+    $self'adminAddress = $admin;
+    return ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test);
+}
+
+((int, slice, cell, int), ()) $Router$_fun_send_simple_message((int, slice, cell, int) $self, int $_value, slice $_to, cell $_body, int $_mode) impure inline_ref {
+    var (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)) = $self;
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($_to, $_value, true, $_mode, $_body));
+    return (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test), ());
+}
+
+((int, slice, cell, int), ()) $Router$_fun__swap((int, slice, cell, int) $self, slice $token_walletIn, slice $from_user, int $jetton_amount, int $min_out, slice $to_address, slice $pool_address, slice $ref_ds) impure inline_ref {
+    var (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)) = $self;
+    var ($body'fromAddress, $body'jettonAmount, $body'tokenWallet, $body'toAddress, $body'minOutput, $body'remainRef) = $Swap$_constructor_fromAddress_jettonAmount_tokenWallet_toAddress_minOutput_remainRef($from_user, $jetton_amount, $token_walletIn, $to_address, $min_out, $ref_ds);
+    ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)~$Router$_fun_send_simple_message(0, $pool_address, $Swap$_store_cell(($body'fromAddress, $body'jettonAmount, $body'tokenWallet, $body'toAddress, $body'minOutput, $body'remainRef)), 64);
+    return (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test), ());
+}
+
+((int, slice, cell, int), ()) $Router$_fun_require_admin((int, slice, cell, int) $self) impure inline_ref {
+    var (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)) = $self;
+    throw_unless(20741, ( __tact_slice_eq_bits($self'adminAddress, $Context$_get_sender(__tact_context_get())) ));
+    return (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test), ());
+}
+
+((int, slice, cell, int), ((cell, cell), slice)) $Router$_fun_get_pool_state_init_and_address((int, slice, cell, int) $self, slice $token0_address, slice $token1_address, int $token0PrecisionMultiplier, int $token1PrecisionMultiplier) impure inline_ref {
+    var (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)) = $self;
+    slice $wallet0 = __gen_slice_address_61ab4641fa30d9310391025086eec65d200d79268e1b7cd402565e01ba64be3c();
+    slice $wallet1 = __gen_slice_address_61ab4641fa30d9310391025086eec65d200d79268e1b7cd402565e01ba64be3c();
+    int $precision0 = 0;
+    int $precision1 = 0;
+    if (($Slice$_fun_hash(__tact_address_to_slice($token0_address)) > $Slice$_fun_hash(__tact_address_to_slice($token1_address)))) {
+        $wallet0 = $token0_address;
+        $wallet1 = $token1_address;
+        $precision0 = $token0PrecisionMultiplier;
+        $precision1 = $token1PrecisionMultiplier;
+    } else {
+        $wallet0 = $token1_address;
+        $wallet1 = $token0_address;
+        $precision0 = $token1PrecisionMultiplier;
+        $precision1 = $token0PrecisionMultiplier;
+    }
+    var ($state_init'code, $state_init'data) = $Pool$_init_child(__tact_context_sys, $global_myAddress(), 20, 10, __gen_slice_address_61ab4641fa30d9310391025086eec65d200d79268e1b7cd402565e01ba64be3c(), 0, 0, $wallet0, $wallet1, 0, 0, 0, $precision0, $precision1);
+    var $fresh$ret_114 = $PoolState$_constructor_init_pool_address(($state_init'code, $state_init'data), $global_contractAddress(($state_init'code, $state_init'data)));
+    return (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test), $fresh$ret_114);
+}
+
+((int, slice, cell, int), int) $Router$_fun_isLocked((int, slice, cell, int) $self) impure inline_ref {
+    var (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)) = $self;
+    var $fresh$ret_115 = $self'isLocked;
+    return (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test), $fresh$ret_115);
+}
+
+((int, slice, cell, int), slice) $Router$_fun_getter_pool_address((int, slice, cell, int) $self, slice $token0_address, slice $token1_address, int $token0PrecisionMultiplier, int $token1PrecisionMultiplier) impure inline_ref {
+    var (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)) = $self;
+    var (($pool_state'init'code, $pool_state'init'data), $pool_state'pool_address) = ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)~$Router$_fun_get_pool_state_init_and_address($token0_address, $token1_address, $token0PrecisionMultiplier, $token1PrecisionMultiplier);
+    var $fresh$ret_116 = $pool_state'pool_address;
+    return (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test), $fresh$ret_116);
+}
+
+((int, slice, cell, int), slice) $Router$_fun_getter_pool_address_noPrecision((int, slice, cell, int) $self, slice $token0_address, slice $token1_address) impure inline_ref {
+    var (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)) = $self;
+    var $fresh$ret_117 = ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)~$Router$_fun_getter_pool_address($token0_address, $token1_address, 1, 1);
+    return (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test), $fresh$ret_117);
+}
+
+((int, slice, cell, int), (int, slice)) $Router$_fun_get_router_data((int, slice, cell, int) $self) impure inline_ref {
+    var (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)) = $self;
+    var $fresh$ret_118 = $RouterData$_constructor_isLocked_adminAddress($self'isLocked, $self'adminAddress);
+    return (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test), $fresh$ret_118);
+}
+
+((int, slice, cell, int), (slice, int, int, int)) $Router$_fun_getter_lp_data((int, slice, cell, int) $self, slice $from_user) impure inline_ref {
+    var (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)) = $self;
+    var $fresh$ret_119 = $ProvideLiquidity$_not_null($ProvideLiquidity$_load_opt(__tact_dict_get_slice_cell($self'lp_data, 267, $from_user)));
+    return (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test), $fresh$ret_119);
+}
+
+((int, slice, cell, int), (int, int, slice, slice, cell, int, slice)) $Router$_fun_create_simple_transfer_body((int, slice, cell, int) $self, int $query_id, int $fwd_amount, int $jetton_amount, slice $to) impure inline_ref {
+    var (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)) = $self;
+    var $fresh$ret_120 = $JettonTransfer$_constructor_query_id_amount_destination_response_destination_custom_payload_forward_ton_amount_forward_payload($query_id, $jetton_amount, $to, $to, $global_emptyCell(), $fwd_amount, $global_emptySlice());
+    return (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test), $fresh$ret_120);
+}
+
+((int, slice, cell, int), slice) $Router$_fun_get_ADD_NONE((int, slice, cell, int) $self) impure inline_ref {
+    var (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)) = $self;
+    var $fresh$ret_121 = __gen_slice_address_61ab4641fa30d9310391025086eec65d200d79268e1b7cd402565e01ba64be3c();
+    return (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test), $fresh$ret_121);
+}
+
+((int, slice, cell, int), ()) $Router$_fun_send_empty_message((int, slice, cell, int) $self, int $_value, slice $_to, int $_mode) impure inline_ref {
+    var (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)) = $self;
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($_to, $_value, true, $_mode, $global_emptyCell()));
+    return (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test), ());
+}
+
+((int, slice, cell, int), ()) $Router$_fun_send_message_with_stateinit((int, slice, cell, int) $self, int $_value, slice $_to, cell $_body, (cell, cell) $_stateInit, int $_mode) impure inline_ref {
+    var (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)) = $self;
+    var (($_stateInit'code, $_stateInit'data)) = $_stateInit;
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body_code_data($_to, $_value, true, $_mode, $_body, $_stateInit'code, $_stateInit'data));
+    return (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test), ());
+}
+
+((int, slice, cell, int), int) $Router$_fun_get_test((int, slice, cell, int) $self) impure inline_ref {
+    var (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)) = $self;
+    var $fresh$ret_122 = $self'test;
+    return (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test), $fresh$ret_122);
+}
+
+;;
+;; Receivers of a Contract Router
+;;
+
+(((int, slice, cell, int)), ()) $Router$_internal_binary_PayTo((int, slice, cell, int) $self, (slice, int, slice, int, slice, slice) $src) impure inline {
+    var ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test) = $self;
+    var ($src'owner, $src'tokenAAmount, $src'walletTokenAAddress, $src'tokenBAmount, $src'walletTokenBAddress, $src'remainRef) = $src;
+    slice $owner = $src'owner;
+    int $amount0_out = $src'tokenAAmount;
+    int $amount1_out = $src'tokenBAmount;
+    slice $token0_address = $src'walletTokenAAddress;
+    slice $token1_address = $src'walletTokenBAddress;
+    slice $ref_cs = $src'remainRef;
+    int $ton_amount = 0;
+    int $mode = 64;
+    int $msg_value = $Context$_get_value(__tact_context_get());
+    if ($Slice$_fun_empty($ref_cs)) {
+        if (( (($amount0_out > 0)) ? (($amount1_out > 0)) : (false) )) {
+            $ton_amount = (($msg_value - 10000000) / 2);
+            $mode = 0;
+        }
+        if (($amount0_out > 0)) {
+            var ($body0'query_id, $body0'amount, $body0'destination, $body0'response_destination, $body0'custom_payload, $body0'forward_ton_amount, $body0'forward_payload) = ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)~$Router$_fun_create_simple_transfer_body(0, 0, $amount0_out, $owner);
+            ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)~$Router$_fun_send_simple_message($ton_amount, $token0_address, $JettonTransfer$_store_cell(($body0'query_id, $body0'amount, $body0'destination, $body0'response_destination, $body0'custom_payload, $body0'forward_ton_amount, $body0'forward_payload)), ($mode | 2));
+        }
+        if (($amount1_out > 0)) {
+            var ($body1'query_id, $body1'amount, $body1'destination, $body1'response_destination, $body1'custom_payload, $body1'forward_ton_amount, $body1'forward_payload) = ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)~$Router$_fun_create_simple_transfer_body(0, 0, $amount1_out, $owner);
+            ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)~$Router$_fun_send_simple_message($ton_amount, $token1_address, $JettonTransfer$_store_cell(($body1'query_id, $body1'amount, $body1'destination, $body1'response_destination, $body1'custom_payload, $body1'forward_ton_amount, $body1'forward_payload)), ($mode | 2));
+        }
+    } else {
+        slice $ref_ds = $Cell$_fun_beginParse($ref_cs~$Slice$_fun_loadRef());
+        slice $token_walletIn = $ref_ds~__tact_load_address();
+        int $min_out = $ref_ds~$Slice$_fun_loadCoins();
+        slice $to_address = $ref_ds~__tact_load_address();
+        slice $pool_address = $ref_ds~__tact_load_address();
+        int $jetton_amount = 0;
+        if (( __tact_slice_eq_bits($token0_address, $token_walletIn) )) {
+            $jetton_amount = $amount0_out;
+        } else {
+            $jetton_amount = $amount1_out;
+        }
+        ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)~$Router$_fun__swap($token_walletIn, $owner, $jetton_amount, $min_out, $to_address, $pool_address, $ref_cs);
+    }
+    return (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test), ());
+}
+
+(((int, slice, cell, int)), ()) $Router$_internal_binary_JettonTransferNotification((int, slice, cell, int) $self, (int, int, slice, slice) $src) impure inline {
+    var ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test) = $self;
+    var ($src'query_id, $src'amount, $src'sender, $src'forward_payload) = $src;
+    int $jetton_amount = $src'amount;
+    slice $from_user = $src'sender;
+    slice $ref_cs = $src'forward_payload;
+    slice $token_walletIn = $Context$_get_sender(__tact_context_get());
+    int $transferred_op = $ref_cs~load_uint(32);
+    slice $token_walletTo = $ref_cs~__tact_load_address();
+    slice $ref_ds = $Cell$_fun_beginParse($ref_cs~$Slice$_fun_loadRef());
+    if (($transferred_op == 630424929)) {
+        int $min_out = $ref_ds~$Slice$_fun_loadCoins();
+        slice $to_address = $ref_ds~__tact_load_address();
+        slice $pool_address = $ref_ds~__tact_load_address();
+        ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)~$Router$_fun__swap($token_walletIn, $from_user, $jetton_amount, $min_out, $to_address, $pool_address, $ref_cs);
+    } elseif (($transferred_op == 4244235663)) {
+        int $min_lp_out = $ref_ds~$Slice$_fun_loadCoins();
+        int $precision0 = $ref_ds~load_uint(32);
+        int $precision1 = $ref_ds~load_uint(32);
+        var (($pool_state'init'code, $pool_state'init'data), $pool_state'pool_address) = ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)~$Router$_fun_get_pool_state_init_and_address($token_walletIn, $token_walletTo, $precision0, $precision1);
+        var ($state_init'code, $state_init'data) = ($pool_state'init'code, $pool_state'init'data);
+        slice $pool_address = $pool_state'pool_address;
+        int $amount0 = 0;
+        int $amount1 = 0;
+        int $allow_set = true;
+        if ((~ null?($ProvideLiquidity$_load_opt(__tact_dict_get_slice_cell($self'lp_data, 267, $from_user))))) {
+            var ($lp'fromAddress, $lp'jettonAmount0, $lp'jettonAmount1, $lp'minLPOut) = $ProvideLiquidity$_not_null($ProvideLiquidity$_load_opt(__tact_dict_get_slice_cell($self'lp_data, 267, $from_user)));
+            $amount0 = $lp'jettonAmount0;
+            $amount1 = $lp'jettonAmount1;
+            $allow_set = false;
+        }
+        if (($Slice$_fun_hash(__tact_address_to_slice($token_walletIn)) > $Slice$_fun_hash(__tact_address_to_slice($token_walletTo)))) {
+            $amount0 = $jetton_amount;
+        } else {
+            $amount1 = $jetton_amount;
+        }
+        if ($allow_set) {
+            $self'lp_data~__tact_dict_set_slice_cell(267, $from_user, $ProvideLiquidity$_store_cell($ProvideLiquidity$_constructor_fromAddress_jettonAmount0_jettonAmount1_minLPOut($from_user, $amount0, $amount1, $min_lp_out)));
+        } else {
+            var ($body'fromAddress, $body'jettonAmount0, $body'jettonAmount1, $body'minLPOut) = $ProvideLiquidity$_constructor_fromAddress_jettonAmount0_jettonAmount1_minLPOut($from_user, $amount0, $amount1, $min_lp_out);
+            $self'lp_data~__tact_dict_delete(267, $from_user);
+            ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)~$Router$_fun_send_message_with_stateinit(0, $pool_address, $ProvideLiquidity$_store_cell(($body'fromAddress, $body'jettonAmount0, $body'jettonAmount1, $body'minLPOut)), ($state_init'code, $state_init'data), 64);
+        }
+    }
+    return (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test), ());
+}
+
+(((int, slice, cell, int)), ()) $Router$_internal_binary_CollectFees((int, slice, cell, int) $self, (slice, slice) $src) impure inline {
+    var ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test) = $self;
+    var ($src'token0, $src'token1) = $src;
+    ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)~$Router$_fun_require_admin();
+    return (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test), ());
+}
+
+(((int, slice, cell, int)), ()) $Router$_internal_binary_UpdateAdmin((int, slice, cell, int) $self, (slice) $src) impure inline {
+    var ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test) = $self;
+    var ($src'newAdmin) = $src;
+    ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)~$Router$_fun_require_admin();
+    $self'adminAddress = $src'newAdmin;
+    return (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test), ());
+}
+
+((int, slice, cell, int), ()) $Router$_internal_text_3062a565cd59d21a6feedad462d26a8f8168f68ed0c9cb8d2622475233a71e82((int, slice, cell, int) $self) impure inline {
+    var ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test) = $self;
+    ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)~$Router$_fun_require_admin();
+    $self'isLocked = true;
+    return (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test), ());
+}
+
+((int, slice, cell, int), ()) $Router$_internal_text_350bc4fe1b3f4e5c24c644ebdda6b742e78826eea19c4a0655f2ed5bd27ebc07((int, slice, cell, int) $self) impure inline {
+    var ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test) = $self;
+    ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)~$Router$_fun_require_admin();
+    $self'isLocked = false;
+    return (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test), ());
+}
+
+(((int, slice, cell, int)), ()) $Router$_internal_binary_Reback((int, slice, cell, int) $self, (slice) $src) impure inline {
+    var ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test) = $self;
+    var ($src'to) = $src;
+    ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)~$Router$_fun_send_empty_message(($global_myBalance() - 100000000), $src'to, 0);
+    return (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test), ());
+}
+
+(((int, slice, cell, int)), ()) $Router$_internal_binary_Deploy((int, slice, cell, int) $self, (int) $deploy) impure inline {
+    var ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'isLocked, $self'adminAddress, $self'lp_data, $self'test)~$Router$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'isLocked, $self'adminAddress, $self'lp_data, $self'test), ());
+}
+
+;;
+;; Get methods of a Contract Router
+;;
+
+_ %isLocked() method_id(124141) {
+    var self = $Router$_contract_load();
+    var res = self~$Router$_fun_isLocked();
+    return res;
+}
+
+_ %getter_pool_address(slice $token0_address, slice $token1_address, int $token0PrecisionMultiplier, int $token1PrecisionMultiplier) method_id(114997) {
+    slice $token0_address = __tact_verify_address($token0_address);
+    slice $token1_address = __tact_verify_address($token1_address);
+    int $token0PrecisionMultiplier = $token0PrecisionMultiplier;
+    int $token1PrecisionMultiplier = $token1PrecisionMultiplier;
+    var self = $Router$_contract_load();
+    var res = self~$Router$_fun_getter_pool_address($token0_address, $token1_address, $token0PrecisionMultiplier, $token1PrecisionMultiplier);
+    return res;
+}
+
+_ %getter_pool_address_noPrecision(slice $token0_address, slice $token1_address) method_id(116762) {
+    slice $token0_address = __tact_verify_address($token0_address);
+    slice $token1_address = __tact_verify_address($token1_address);
+    var self = $Router$_contract_load();
+    var res = self~$Router$_fun_getter_pool_address_noPrecision($token0_address, $token1_address);
+    return res;
+}
+
+_ %get_router_data() method_id(128085) {
+    var self = $Router$_contract_load();
+    var res = self~$Router$_fun_get_router_data();
+    return $RouterData$_to_external(res);
+}
+
+_ %getter_lp_data(slice $from_user) method_id(79752) {
+    slice $from_user = __tact_verify_address($from_user);
+    var self = $Router$_contract_load();
+    var res = self~$Router$_fun_getter_lp_data($from_user);
+    return $ProvideLiquidity$_to_external(res);
+}
+
+_ %get_ADD_NONE() method_id(82022) {
+    var self = $Router$_contract_load();
+    var res = self~$Router$_fun_get_ADD_NONE();
+    return res;
+}
+
+_ %get_test() method_id(76013) {
+    var self = $Router$_contract_load();
+    var res = self~$Router$_fun_get_test();
+    return res;
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Router
+;;
+
+((int, slice, cell, int), int) $Router$_contract_router_internal((int, slice, cell, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive PayTo message
+    if (op == 2200270478) {
+        var msg = in_msg~$PayTo$_load();
+        self~$Router$_internal_binary_PayTo(msg);
+        return (self, true);
+    }
+    
+    ;; Receive JettonTransferNotification message
+    if (op == 0x7362d09c) {
+        var msg = in_msg~$JettonTransferNotification$_load();
+        self~$Router$_internal_binary_JettonTransferNotification(msg);
+        return (self, true);
+    }
+    
+    ;; Receive CollectFees message
+    if (op == 2367611937) {
+        var msg = in_msg~$CollectFees$_load();
+        self~$Router$_internal_binary_CollectFees(msg);
+        return (self, true);
+    }
+    
+    ;; Receive UpdateAdmin message
+    if (op == 2286520683) {
+        var msg = in_msg~$UpdateAdmin$_load();
+        self~$Router$_internal_binary_UpdateAdmin(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Reback message
+    if (op == 727571334) {
+        var msg = in_msg~$Reback$_load();
+        self~$Router$_internal_binary_Reback(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$Router$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "Lock" message
+        if (text_op == 0x3062a565cd59d21a6feedad462d26a8f8168f68ed0c9cb8d2622475233a71e82) {
+            self~$Router$_internal_text_3062a565cd59d21a6feedad462d26a8f8168f68ed0c9cb8d2622475233a71e82();
+            return (self, true);
+        }
+        
+        ;; Receive "Unlock" message
+        if (text_op == 0x350bc4fe1b3f4e5c24c644ebdda6b742e78826eea19c4a0655f2ed5bd27ebc07) {
+            self~$Router$_internal_text_350bc4fe1b3f4e5c24c644ebdda6b742e78826eea19c4a0655f2ed5bd27ebc07();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Router$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Router$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Router$_contract_store(self);
+}

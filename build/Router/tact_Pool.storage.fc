@@ -1,0 +1,461 @@
+;;
+;; Type: StateInit
+;; TLB: _ code:^cell data:^cell = StateInit
+;;
+
+_ $StateInit$_get_code((cell, cell) v) inline {
+    var (v'code, v'data) = v;
+    return v'code;
+}
+
+((cell, cell)) $StateInit$_not_null(tuple v) inline {
+    throw_if(128, null?(v));
+    var (cell vvv'code, cell vvv'data) = __tact_tuple_destroy_2(v);
+    return (vvv'code, vvv'data);
+}
+
+;;
+;; Type: Context
+;; TLB: _ bounced:bool sender:address value:int257 raw:^slice = Context
+;;
+
+_ $Context$_get_sender((int, slice, int, slice) v) inline {
+    var (v'bounced, v'sender, v'value, v'raw) = v;
+    return v'sender;
+}
+
+;;
+;; Type: SendParameters
+;; TLB: _ bounce:bool to:address value:int257 mode:int257 body:Maybe ^cell code:Maybe ^cell data:Maybe ^cell = SendParameters
+;;
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_bounce_mode_body_code_data(slice $to, int $value, int $bounce, int $mode, cell $body, cell $code, cell $data) inline {
+    return ($bounce, $to, $value, $mode, $body, $code, $data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_bounce_mode_body(slice $to, int $value, int $bounce, int $mode, cell $body) inline {
+    return ($bounce, $to, $value, $mode, $body, null(), null());
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_bounce_to_value_mode_body_code_data(int $bounce, slice $to, int $value, int $mode, cell $body, cell $code, cell $data) inline {
+    return ($bounce, $to, $value, $mode, $body, $code, $data);
+}
+
+((int, slice, int, int, cell, cell, cell)) $SendParameters$_constructor_to_value_bounce_mode(slice $to, int $value, int $bounce, int $mode) inline {
+    return ($bounce, $to, $value, $mode, null(), null(), null());
+}
+
+;;
+;; Type: Deploy
+;; Header: 0x946a98b6
+;; TLB: deploy#946a98b6 queryId:uint64 = Deploy
+;;
+
+(slice, ((int))) $Deploy$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2490013878);
+    var v'queryId = sc_0~load_uint(64);
+    return (sc_0, (v'queryId));
+}
+
+;;
+;; Type: DeployOk
+;; Header: 0xaff90f57
+;; TLB: deploy_ok#aff90f57 queryId:uint64 = DeployOk
+;;
+
+builder $DeployOk$_store(builder build_0, (int) v) inline {
+    var (v'queryId) = v;
+    build_0 = store_uint(build_0, 2952335191, 32);
+    build_0 = build_0.store_uint(v'queryId, 64);
+    return build_0;
+}
+
+cell $DeployOk$_store_cell((int) v) inline {
+    return $DeployOk$_store(begin_cell(), v).end_cell();
+}
+
+((int)) $DeployOk$_constructor_queryId(int $queryId) inline {
+    return ($queryId);
+}
+
+;;
+;; Type: JettonInternalTransfer
+;; Header: 0x178d4519
+;; TLB: jetton_internal_transfer#178d4519 query_id:uint64 amount:coins from:address response_address:address forward_ton_amount:coins forward_payload:remainder<slice> = JettonInternalTransfer
+;;
+
+builder $JettonInternalTransfer$_store(builder build_0, (int, int, slice, slice, int, slice) v) inline_ref {
+    var (v'query_id, v'amount, v'from, v'response_address, v'forward_ton_amount, v'forward_payload) = v;
+    build_0 = store_uint(build_0, 395134233, 32);
+    build_0 = build_0.store_uint(v'query_id, 64);
+    build_0 = build_0.store_coins(v'amount);
+    build_0 = __tact_store_address(build_0, v'from);
+    build_0 = __tact_store_address(build_0, v'response_address);
+    build_0 = build_0.store_coins(v'forward_ton_amount);
+    build_0 = build_0.store_slice(v'forward_payload);
+    return build_0;
+}
+
+cell $JettonInternalTransfer$_store_cell((int, int, slice, slice, int, slice) v) inline {
+    return $JettonInternalTransfer$_store(begin_cell(), v).end_cell();
+}
+
+((int, int, slice, slice, int, slice)) $JettonInternalTransfer$_constructor_query_id_amount_response_address_from_forward_ton_amount_forward_payload(int $query_id, int $amount, slice $response_address, slice $from, int $forward_ton_amount, slice $forward_payload) inline {
+    return ($query_id, $amount, $from, $response_address, $forward_ton_amount, $forward_payload);
+}
+
+;;
+;; Type: JettonBurnNotification
+;; Header: 0x7bdd97de
+;; TLB: jetton_burn_notification#7bdd97de query_id:uint64 amount:coins sender:address response_destination:address = JettonBurnNotification
+;;
+
+(slice, ((int, int, slice, slice))) $JettonBurnNotification$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 2078119902);
+    var v'query_id = sc_0~load_uint(64);
+    var v'amount = sc_0~load_coins();
+    var v'sender = sc_0~__tact_load_address();
+    var v'response_destination = sc_0~__tact_load_address();
+    return (sc_0, (v'query_id, v'amount, v'sender, v'response_destination));
+}
+
+;;
+;; Type: JettonData
+;; TLB: _ total_supply:coins mintable:bool admin_address:address jetton_content:^cell jetton_wallet_code:^cell = JettonData
+;;
+
+(int, int, slice, cell, cell) $JettonData$_to_external(((int, int, slice, cell, cell)) v) inline {
+    var (v'total_supply, v'mintable, v'admin_address, v'jetton_content, v'jetton_wallet_code) = v; 
+    return (v'total_supply, v'mintable, v'admin_address, v'jetton_content, v'jetton_wallet_code);
+}
+
+((int, int, slice, cell, cell)) $JettonData$_constructor_total_supply_mintable_admin_address_jetton_content_jetton_wallet_code(int $total_supply, int $mintable, slice $admin_address, cell $jetton_content, cell $jetton_wallet_code) inline {
+    return ($total_supply, $mintable, $admin_address, $jetton_content, $jetton_wallet_code);
+}
+
+;;
+;; Type: JettonMint
+;; Header: 0x89b71d09
+;; TLB: jetton_mint#89b71d09 origin:address receiver:address amount:int257 custom_payload:Maybe ^cell forward_ton_amount:coins forward_payload:remainder<slice> = JettonMint
+;;
+
+(slice, ((slice, slice, int, cell, int, slice))) $JettonMint$_load(slice sc_0) inline_ref {
+    throw_unless(129, sc_0~load_uint(32) == 2310479113);
+    var v'origin = sc_0~__tact_load_address();
+    var v'receiver = sc_0~__tact_load_address();
+    var v'amount = sc_0~load_int(257);
+    var v'custom_payload = sc_0~load_int(1) ? sc_0~load_ref() : null();
+    var v'forward_ton_amount = sc_0~load_coins();
+    var v'forward_payload = sc_0;
+    return (sc_0, (v'origin, v'receiver, v'amount, v'custom_payload, v'forward_ton_amount, v'forward_payload));
+}
+
+((slice, slice, int, cell, int, slice)) $JettonMint$_constructor_origin_receiver_amount_custom_payload_forward_ton_amount_forward_payload(slice $origin, slice $receiver, int $amount, cell $custom_payload, int $forward_ton_amount, slice $forward_payload) inline {
+    return ($origin, $receiver, $amount, $custom_payload, $forward_ton_amount, $forward_payload);
+}
+
+;;
+;; Type: PoolParams
+;; TLB: _ initialA:int257 futureA:int257 initialTime:int257 futureTime:int257 = PoolParams
+;;
+
+builder $PoolParams$_store(builder build_0, (int, int, int, int) v) inline {
+    var (v'initialA, v'futureA, v'initialTime, v'futureTime) = v;
+    build_0 = build_0.store_int(v'initialA, 257);
+    build_0 = build_0.store_int(v'futureA, 257);
+    build_0 = build_0.store_int(v'initialTime, 257);
+    var build_1 = begin_cell();
+    build_1 = build_1.store_int(v'futureTime, 257);
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(slice, ((int, int, int, int))) $PoolParams$_load(slice sc_0) inline {
+    var v'initialA = sc_0~load_int(257);
+    var v'futureA = sc_0~load_int(257);
+    var v'initialTime = sc_0~load_int(257);
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'futureTime = sc_1~load_int(257);
+    return (sc_0, (v'initialA, v'futureA, v'initialTime, v'futureTime));
+}
+
+((int, int, int, int)) $PoolParams$_tensor_cast((int, int, int, int) v) asm """
+    NOP
+""";
+
+((int, int, int, int)) $PoolParams$_constructor_initialA_futureA_initialTime_futureTime(int $initialA, int $futureA, int $initialTime, int $futureTime) inline {
+    return ($initialA, $futureA, $initialTime, $futureTime);
+}
+
+;;
+;; Type: AmountOut
+;; TLB: _ amountOut:coins feeIn:coins = AmountOut
+;;
+
+((int, int)) $AmountOut$_constructor_amountOut_feeIn(int $amountOut, int $feeIn) inline {
+    return ($amountOut, $feeIn);
+}
+
+;;
+;; Type: PoolData
+;; TLB: _ routerAddress:address reserve0:coins reserve1:coins token0Address:address token1Address:address lpFee:coins protocolFee:coins protocolFeeAddress:address collectedToken0ProtocolFee:coins collectedToken1ProtocolFee:coins = PoolData
+;;
+
+(slice, int, int, slice, slice, int, int, slice, int, int) $PoolData$_to_external(((slice, int, int, slice, slice, int, int, slice, int, int)) v) inline {
+    var (v'routerAddress, v'reserve0, v'reserve1, v'token0Address, v'token1Address, v'lpFee, v'protocolFee, v'protocolFeeAddress, v'collectedToken0ProtocolFee, v'collectedToken1ProtocolFee) = v; 
+    return (v'routerAddress, v'reserve0, v'reserve1, v'token0Address, v'token1Address, v'lpFee, v'protocolFee, v'protocolFeeAddress, v'collectedToken0ProtocolFee, v'collectedToken1ProtocolFee);
+}
+
+((slice, int, int, slice, slice, int, int, slice, int, int)) $PoolData$_constructor_routerAddress_reserve0_reserve1_token0Address_token1Address_lpFee_protocolFee_protocolFeeAddress_collectedToken0ProtocolFee_collectedToken1ProtocolFee(slice $routerAddress, int $reserve0, int $reserve1, slice $token0Address, slice $token1Address, int $lpFee, int $protocolFee, slice $protocolFeeAddress, int $collectedToken0ProtocolFee, int $collectedToken1ProtocolFee) inline {
+    return ($routerAddress, $reserve0, $reserve1, $token0Address, $token1Address, $lpFee, $protocolFee, $protocolFeeAddress, $collectedToken0ProtocolFee, $collectedToken1ProtocolFee);
+}
+
+;;
+;; Type: ExpectedLiquidity
+;; TLB: _ amount0:coins amount1:coins = ExpectedLiquidity
+;;
+
+(int, int) $ExpectedLiquidity$_to_external(((int, int)) v) inline {
+    var (v'amount0, v'amount1) = v; 
+    return (v'amount0, v'amount1);
+}
+
+((int, int)) $ExpectedLiquidity$_constructor_amount0_amount1(int $amount0, int $amount1) inline {
+    return ($amount0, $amount1);
+}
+
+;;
+;; Type: Reserves
+;; TLB: _ reserve0:coins reserve1:coins = Reserves
+;;
+
+(int, int) $Reserves$_to_external(((int, int)) v) inline {
+    var (v'reserve0, v'reserve1) = v; 
+    return (v'reserve0, v'reserve1);
+}
+
+((int, int)) $Reserves$_constructor_reserve0_reserve1(int $reserve0, int $reserve1) inline {
+    return ($reserve0, $reserve1);
+}
+
+;;
+;; Type: PayTo
+;; Header: 0x8325768e
+;; TLB: pay_to#8325768e owner:address tokenAAmount:coins walletTokenAAddress:address tokenBAmount:coins walletTokenBAddress:address remainRef:^slice = PayTo
+;;
+
+builder $PayTo$_store(builder build_0, (slice, int, slice, int, slice, slice) v) inline_ref {
+    var (v'owner, v'tokenAAmount, v'walletTokenAAddress, v'tokenBAmount, v'walletTokenBAddress, v'remainRef) = v;
+    build_0 = store_uint(build_0, 2200270478, 32);
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = build_0.store_coins(v'tokenAAmount);
+    build_0 = __tact_store_address(build_0, v'walletTokenAAddress);
+    build_0 = build_0.store_coins(v'tokenBAmount);
+    var build_1 = begin_cell();
+    build_1 = __tact_store_address(build_1, v'walletTokenBAddress);
+    build_1 = build_1.store_ref(begin_cell().store_slice(v'remainRef).end_cell());
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+cell $PayTo$_store_cell((slice, int, slice, int, slice, slice) v) inline {
+    return $PayTo$_store(begin_cell(), v).end_cell();
+}
+
+((slice, int, slice, int, slice, slice)) $PayTo$_constructor_owner_tokenAAmount_walletTokenAAddress_tokenBAmount_walletTokenBAddress_remainRef(slice $owner, int $tokenAAmount, slice $walletTokenAAddress, int $tokenBAmount, slice $walletTokenBAddress, slice $remainRef) inline {
+    return ($owner, $tokenAAmount, $walletTokenAAddress, $tokenBAmount, $walletTokenBAddress, $remainRef);
+}
+
+;;
+;; Type: ProvideLiquidity
+;; Header: 0x355a3065
+;; TLB: provide_liquidity#355a3065 fromAddress:address jettonAmount0:coins jettonAmount1:coins minLPOut:coins = ProvideLiquidity
+;;
+
+(slice, ((slice, int, int, int))) $ProvideLiquidity$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 895103077);
+    var v'fromAddress = sc_0~__tact_load_address();
+    var v'jettonAmount0 = sc_0~load_coins();
+    var v'jettonAmount1 = sc_0~load_coins();
+    var v'minLPOut = sc_0~load_coins();
+    return (sc_0, (v'fromAddress, v'jettonAmount0, v'jettonAmount1, v'minLPOut));
+}
+
+;;
+;; Type: RefundMe
+;; Header: 0x4813d803
+;; TLB: refund_me#4813d803 tot_am0:int257 tot_am1:int257 user_address:address = RefundMe
+;;
+
+(slice, ((int, int, slice))) $RefundMe$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1209260035);
+    var v'tot_am0 = sc_0~load_int(257);
+    var v'tot_am1 = sc_0~load_int(257);
+    var v'user_address = sc_0~__tact_load_address();
+    return (sc_0, (v'tot_am0, v'tot_am1, v'user_address));
+}
+
+;;
+;; Type: SetFees
+;; Header: 0x54c370f0
+;; TLB: set_fees#54c370f0 newLPFee:coins newProtocolFees:coins newProtocolFeeAddress:address = SetFees
+;;
+
+(slice, ((int, int, slice))) $SetFees$_load(slice sc_0) inline {
+    throw_unless(129, sc_0~load_uint(32) == 1422094576);
+    var v'newLPFee = sc_0~load_coins();
+    var v'newProtocolFees = sc_0~load_coins();
+    var v'newProtocolFeeAddress = sc_0~__tact_load_address();
+    return (sc_0, (v'newLPFee, v'newProtocolFees, v'newProtocolFeeAddress));
+}
+
+;;
+;; Type: Swap
+;; Header: 0x0cb8a416
+;; TLB: swap#0cb8a416 fromAddress:address jettonAmount:coins tokenWallet:address toAddress:address minOutput:coins remainRef:^slice = Swap
+;;
+
+(slice, ((slice, int, slice, slice, int, slice))) $Swap$_load(slice sc_0) inline_ref {
+    throw_unless(129, sc_0~load_uint(32) == 213427222);
+    var v'fromAddress = sc_0~__tact_load_address();
+    var v'jettonAmount = sc_0~load_coins();
+    var v'tokenWallet = sc_0~__tact_load_address();
+    var v'toAddress = sc_0~__tact_load_address();
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'minOutput = sc_1~load_coins();
+    var v'remainRef = sc_1~load_ref().begin_parse();
+    return (sc_0, (v'fromAddress, v'jettonAmount, v'tokenWallet, v'toAddress, v'minOutput, v'remainRef));
+}
+
+;;
+;; Type: Pool
+;;
+
+builder $Pool$_store(builder build_0, (slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) v) inline {
+    var (v'routerAddress, v'lpFee, v'protocolFee, v'protocolFeesAddress, v'collectedTokenAProtocolFees, v'collectedTokenBProtocolFees, v'wallet0, v'wallet1, v'reserve0, v'reserve1, v'token0PrecisionMultiplier, v'token1PrecisionMultiplier, (v'poolParams'initialA, v'poolParams'futureA, v'poolParams'initialTime, v'poolParams'futureTime), v'total_supply, v'mintable, v'owner, v'jetton_content, v'test) = v;
+    build_0 = __tact_store_address(build_0, v'routerAddress);
+    build_0 = build_0.store_coins(v'lpFee);
+    build_0 = build_0.store_coins(v'protocolFee);
+    build_0 = __tact_store_address(build_0, v'protocolFeesAddress);
+    build_0 = build_0.store_coins(v'collectedTokenAProtocolFees);
+    var build_1 = begin_cell();
+    build_1 = build_1.store_coins(v'collectedTokenBProtocolFees);
+    build_1 = __tact_store_address(build_1, v'wallet0);
+    build_1 = __tact_store_address(build_1, v'wallet1);
+    build_1 = build_1.store_coins(v'reserve0);
+    build_1 = build_1.store_coins(v'reserve1);
+    var build_2 = begin_cell();
+    build_2 = build_2.store_int(v'token0PrecisionMultiplier, 257);
+    build_2 = build_2.store_int(v'token1PrecisionMultiplier, 257);
+    var build_3 = begin_cell();
+    build_3 = $PoolParams$_store(build_3, (v'poolParams'initialA, v'poolParams'futureA, v'poolParams'initialTime, v'poolParams'futureTime));
+    var build_4 = begin_cell();
+    build_4 = build_4.store_int(v'total_supply, 257);
+    build_4 = build_4.store_int(v'mintable, 1);
+    build_4 = __tact_store_address(build_4, v'owner);
+    build_4 = build_4.store_ref(v'jetton_content);
+    build_4 = build_4.store_int(v'test, 1);
+    build_3 = store_ref(build_3, build_4.end_cell());
+    build_2 = store_ref(build_2, build_3.end_cell());
+    build_1 = store_ref(build_1, build_2.end_cell());
+    build_0 = store_ref(build_0, build_1.end_cell());
+    return build_0;
+}
+
+(slice, ((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int))) $Pool$_load(slice sc_0) inline {
+    var v'routerAddress = sc_0~__tact_load_address();
+    var v'lpFee = sc_0~load_coins();
+    var v'protocolFee = sc_0~load_coins();
+    var v'protocolFeesAddress = sc_0~__tact_load_address();
+    var v'collectedTokenAProtocolFees = sc_0~load_coins();
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'collectedTokenBProtocolFees = sc_1~load_coins();
+    var v'wallet0 = sc_1~__tact_load_address();
+    var v'wallet1 = sc_1~__tact_load_address();
+    var v'reserve0 = sc_1~load_coins();
+    var v'reserve1 = sc_1~load_coins();
+    slice sc_2 = sc_1~load_ref().begin_parse();
+    var v'token0PrecisionMultiplier = sc_2~load_int(257);
+    var v'token1PrecisionMultiplier = sc_2~load_int(257);
+    slice sc_3 = sc_2~load_ref().begin_parse();
+    var v'poolParams = sc_3~$PoolParams$_load();
+    slice sc_4 = sc_3~load_ref().begin_parse();
+    var v'total_supply = sc_4~load_int(257);
+    var v'mintable = sc_4~load_int(1);
+    var v'owner = sc_4~__tact_load_address();
+    var v'jetton_content = sc_4~load_ref();
+    var v'test = sc_4~load_int(1);
+    return (sc_0, (v'routerAddress, v'lpFee, v'protocolFee, v'protocolFeesAddress, v'collectedTokenAProtocolFees, v'collectedTokenBProtocolFees, v'wallet0, v'wallet1, v'reserve0, v'reserve1, v'token0PrecisionMultiplier, v'token1PrecisionMultiplier, v'poolParams, v'total_supply, v'mintable, v'owner, v'jetton_content, v'test));
+}
+
+(slice, ((slice, int, int, slice, int, int, slice, slice, int, int, int, int, int))) $Pool$init$_load(slice sc_0) inline_ref {
+    var v'routerAddress = sc_0~__tact_load_address();
+    var v'lpFee = sc_0~load_int(257);
+    var v'protocolFee = sc_0~load_int(257);
+    slice sc_1 = sc_0~load_ref().begin_parse();
+    var v'protocolFeesAddress = sc_1~__tact_load_address();
+    var v'collectedTokenAProtocolFees = sc_1~load_int(257);
+    var v'collectedTokenBProtocolFees = sc_1~load_int(257);
+    slice sc_2 = sc_1~load_ref().begin_parse();
+    var v'wallet0 = sc_2~__tact_load_address();
+    var v'wallet1 = sc_2~__tact_load_address();
+    var v'reserve0 = sc_2~load_int(257);
+    slice sc_3 = sc_2~load_ref().begin_parse();
+    var v'reserve1 = sc_3~load_int(257);
+    var v'total_supply = sc_3~load_int(257);
+    var v'token0PrecisionMultiplier = sc_3~load_int(257);
+    slice sc_4 = sc_3~load_ref().begin_parse();
+    var v'token1PrecisionMultiplier = sc_4~load_int(257);
+    return (sc_0, (v'routerAddress, v'lpFee, v'protocolFee, v'protocolFeesAddress, v'collectedTokenAProtocolFees, v'collectedTokenBProtocolFees, v'wallet0, v'wallet1, v'reserve0, v'reserve1, v'total_supply, v'token0PrecisionMultiplier, v'token1PrecisionMultiplier));
+}
+
+(slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $Pool$_contract_load() impure inline_ref {
+    slice $sc = get_data().begin_parse();
+    __tact_context_sys = $sc~load_ref();
+    int $loaded = $sc~load_int(1);
+    if ($loaded) {
+        return $sc~$Pool$_load();
+    } else {
+        ;; Allow only workchain deployments
+        throw_unless(137, my_address().preload_uint(11) == 1024);
+        (slice $routerAddress, int $lpFee, int $protocolFee, slice $protocolFeesAddress, int $collectedTokenAProtocolFees, int $collectedTokenBProtocolFees, slice $wallet0, slice $wallet1, int $reserve0, int $reserve1, int $total_supply, int $token0PrecisionMultiplier, int $token1PrecisionMultiplier) = $sc~$Pool$init$_load();
+        $sc.end_parse();
+        return $Pool$_contract_init($routerAddress, $lpFee, $protocolFee, $protocolFeesAddress, $collectedTokenAProtocolFees, $collectedTokenBProtocolFees, $wallet0, $wallet1, $reserve0, $reserve1, $total_supply, $token0PrecisionMultiplier, $token1PrecisionMultiplier);
+    }
+}
+
+() $Pool$_contract_store((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) v) impure inline {
+    builder b = begin_cell();
+    b = b.store_ref(__tact_context_sys);
+    b = b.store_int(true, 1);
+    b = $Pool$_store(b, v);
+    set_data(b.end_cell());
+}
+
+;;
+;; Type: ExampleJettonWallet
+;;
+
+builder $ExampleJettonWallet$init$_store(builder build_0, (slice, slice) v) inline {
+    var (v'owner, v'jetton_master) = v;
+    build_0 = __tact_store_address(build_0, v'owner);
+    build_0 = __tact_store_address(build_0, v'jetton_master);
+    return build_0;
+}
+
+(cell, cell) $ExampleJettonWallet$_init_child(cell sys', slice $owner, slice $jetton_master) inline_ref {
+    slice sc' = sys'.begin_parse();
+    cell source = sc'~load_dict();
+    cell contracts = new_dict();
+    
+    ;; Contract Code: ExampleJettonWallet
+    cell mine = __tact_dict_get_code(source, 40421);
+    contracts = __tact_dict_set_code(contracts, 40421, mine);
+    
+    ;; Build cell
+    builder b = begin_cell();
+    b = b.store_ref(begin_cell().store_dict(contracts).end_cell());
+    b = b.store_int(false, 1);
+    b = $ExampleJettonWallet$init$_store(b, ($owner, $jetton_master));
+    return (mine, b.end_cell());
+}

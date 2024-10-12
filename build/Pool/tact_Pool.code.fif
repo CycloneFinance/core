@@ -1,0 +1,3018 @@
+PROGRAM{
+  DECLPROC __tact_verify_address
+  DECLPROC __tact_load_address
+  DECLPROC __tact_store_address
+  DECLPROC __tact_create_address
+  DECLPROC __tact_compute_contract_address
+  DECLPROC __tact_not_null
+  DECLPROC __tact_context_get
+  DECLPROC __tact_context_get_sender
+  DECLPROC __tact_store_bool
+  DECLPROC __tact_slice_eq_bits
+  DECLPROC __tact_dict_set_code
+  DECLPROC __tact_dict_get_code
+  DECLPROC $Deploy$_load
+  DECLPROC $DeployOk$_store
+  DECLPROC $DeployOk$_store_cell
+  DECLPROC $JettonInternalTransfer$_store
+  DECLPROC $JettonInternalTransfer$_store_cell
+  DECLPROC $JettonBurnNotification$_load
+  DECLPROC $JettonMint$_load
+  DECLPROC $PoolParams$_store
+  DECLPROC $PoolParams$_load
+  DECLPROC $PayTo$_store
+  DECLPROC $PayTo$_store_cell
+  DECLPROC $ProvideLiquidity$_load
+  DECLPROC $RefundMe$_load
+  DECLPROC $SetFees$_load
+  DECLPROC $Swap$_load
+  DECLPROC $Pool$_store
+  DECLPROC $Pool$_load
+  DECLPROC $StateInit$_get_code
+  DECLPROC $StateInit$_not_null
+  DECLPROC $Context$_get_sender
+  DECLPROC $JettonData$_to_external
+  DECLPROC $PoolData$_to_external
+  DECLPROC $ExpectedLiquidity$_to_external
+  DECLPROC $Reserves$_to_external
+  DECLPROC $ExampleJettonWallet$init$_store
+  DECLPROC $Pool$init$_load
+  DECLPROC $PoolParams$_constructor_initialA_futureA_initialTime_futureTime
+  DECLPROC $global_emptyCell
+  DECLPROC $Pool$_contract_init
+  DECLPROC $Pool$_contract_load
+  DECLPROC $Pool$_contract_store
+  DECLPROC $Cell$_fun_asSlice
+  DECLPROC $global_emptySlice
+  DECLPROC $global_contractAddress
+  DECLPROC $global_send
+  DECLPROC $ExampleJettonWallet$_init_child
+  DECLPROC $SendParameters$_constructor_bounce_to_value_mode_body_code_data
+  DECLPROC $SendParameters$_constructor_to_value_bounce_mode_body
+  DECLPROC $SendParameters$_constructor_to_value_bounce_mode_body_code_data
+  DECLPROC $JettonInternalTransfer$_constructor_query_id_amount_response_address_from_forward_ton_amount_forward_payload
+  DECLPROC $JettonMint$_constructor_origin_receiver_amount_custom_payload_forward_ton_amount_forward_payload
+  DECLPROC $Pool$_fun__mint_validate
+  DECLPROC $Pool$_fun_calculate_jetton_wallet_init
+  DECLPROC $Pool$_fun__mint
+  DECLPROC $Pool$_fun__mint_lp
+  DECLPROC $Pool$_fun_within1
+  DECLPROC $Pool$_fun_computeDFromAdjustedBalances
+  DECLPROC $Pool$_fun__computeInvariant
+  DECLPROC $Pool$_fun_getA
+  DECLPROC $PayTo$_constructor_owner_tokenAAmount_walletTokenAAddress_tokenBAmount_walletTokenBAddress
+  DECLPROC $Pool$_fun_send_message_nobounce
+  DECLPROC $Pool$_fun_call_pay_to
+  DECLPROC $Pool$_fun_burn_notification_hook
+  DECLPROC $PoolData$_constructor_reserve0_reserve1_token0Address_token1Address_lpFee_protocolFee_protocolFeeAddress_collectedToken0ProtocolFee_collectedToken1ProtocolFee
+  DECLPROC $Pool$_fun_get_pool_data
+  DECLPROC $Pool$_fun_getSwapFee
+  DECLPROC $Pool$_fun__getSwapFee
+  DECLPROC $Pool$_fun_getAmountOut
+  DECLPROC $Pool$_fun_getTokenOut
+  DECLPROC $ExpectedLiquidity$_constructor_amount0_amount1
+  DECLPROC $Pool$_fun_get_expected_liquidity
+  DECLPROC $Pool$_fun_get_reserve0
+  DECLPROC $Pool$_fun_get_reserve1
+  DECLPROC $Reserves$_constructor_reserve0_reserve1
+  DECLPROC $Pool$_fun_getReserves
+  DECLPROC $Pool$_fun_getter_A
+  DECLPROC $Pool$_fun_getter_oldInvariant
+  DECLPROC $Pool$_fun_getter_newInvariant
+  DECLPROC $Pool$_fun_getter_computeDFromAdjustedBalances
+  DECLPROC $Pool$_fun_getter_ADD_NONE
+  DECLPROC $Pool$_fun_forward
+  DECLPROC $Pool$_fun_notify
+  DECLPROC $Pool$_fun_send_empty_message
+  DECLPROC $AmountOut$_constructor_amountOut_feeIn
+  DECLPROC $Pool$_fun_getY
+  DECLPROC $Pool$_fun__getAmountOut
+  DECLPROC $Pool$_fun__burn_notification_validate
+  DECLPROC $SendParameters$_constructor_to_value_bounce_mode
+  DECLPROC $Pool$_fun__burn_notification
+  DECLPROC $JettonData$_constructor_total_supply_mintable_admin_address_jetton_content_jetton_wallet_code
+  DECLPROC $Pool$_fun_get_jetton_data
+  DECLPROC $Pool$_fun_get_wallet_address
+  DECLPROC $Pool$_fun_get_test
+  DECLPROC $DeployOk$_constructor_queryId
+  DECLPROC toFloat
+  DECLPROC add
+  DECLPROC sub
+  DECLPROC mul
+  DECLPROC div
+  DECLPROC safeAdd
+  DECLPROC safeSub
+  DECLPROC safeMul
+  DECLPROC safeDiv
+  DECLPROC sqrtFloat
+  DECLPROC sqrt
+  DECLPROC $Pool$_internal_binary_ProvideLiquidity
+  DECLPROC $Pool$_internal_binary_RefundMe
+  DECLPROC $Pool$_internal_binary_Swap
+  DECLPROC $Pool$_internal_text_ea0cb675c9b967b9a50bcedc0def02414fe6702944446d5bc19fe40d606ae2e7
+  DECLPROC $Pool$_internal_text_a3f981136c4332f7a5f92f98cb86a3d48b37013118eee4d6e292cecb93edbb18
+  DECLPROC $Pool$_internal_binary_SetFees
+  DECLPROC $Pool$_internal_binary_JettonBurnNotification
+  DECLPROC $Pool$_internal_binary_JettonMint
+  DECLPROC $Pool$_internal_binary_Deploy
+  81689 DECLMETHOD %get_pool_data
+  88101 DECLMETHOD %getAmountOut
+  74017 DECLMETHOD %getTokenOut
+  97539 DECLMETHOD %get_expected_liquidity
+  96532 DECLMETHOD %get_reserve0
+  92469 DECLMETHOD %get_reserve1
+  80215 DECLMETHOD %getReserves
+  82491 DECLMETHOD %getter_A
+  118678 DECLMETHOD %getter_oldInvariant
+  103293 DECLMETHOD %getter_newInvariant
+  72368 DECLMETHOD %getter_computeDFromAdjustedBalances
+  105097 DECLMETHOD %getter_ADD_NONE
+  106029 DECLMETHOD %get_jetton_data
+  103289 DECLMETHOD %get_wallet_address
+  76013 DECLMETHOD %get_test
+  115390 DECLMETHOD lazy_deployment_completed
+  DECLPROC $Pool$_contract_router_internal
+  DECLPROC recv_internal
+  DECLGLOBVAR __tact_context
+  DECLGLOBVAR __tact_context_sender
+  DECLGLOBVAR __tact_context_sys
+  DECLGLOBVAR __tact_randomized
+  __tact_verify_address PROCINLINE:<{
+    DUP
+    SBITS
+    267 PUSHINT
+    EQUAL
+    136 THROWIFNOT
+    DUP
+    11 PLDU
+    DUP
+    1279 PUSHINT
+    EQUAL
+    137 THROWIF
+    10 PUSHPOW2
+    EQUAL
+    136 THROWIFNOT
+  }>
+  __tact_load_address PROCINLINE:<{
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+  }>
+  __tact_store_address PROCINLINE:<{
+    __tact_verify_address INLINECALLDICT
+    STSLICER
+  }>
+  __tact_create_address PROCINLINE:<{
+    NEWC
+    2 PUSHINT
+    SWAP
+    2 STU
+    0 PUSHINT
+    SWAP
+    1 STU
+    s1 s2 XCHG
+    8 STI
+    256 STU
+    ENDC
+    CTOS
+    __tact_verify_address INLINECALLDICT
+  }>
+  __tact_compute_contract_address PROCINLINE:<{
+    NEWC
+    0 PUSHINT
+    SWAP
+    2 STU
+    3 PUSHINT
+    SWAP
+    2 STU
+    0 PUSHINT
+    SWAP
+    1 STU
+    s1 s2 XCHG
+    STREF
+    STREF
+    ENDC
+    HASHCU
+    __tact_create_address INLINECALLDICT
+  }>
+  __tact_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+  }>
+  __tact_context_get PROCINLINE:<{
+    __tact_context GETGLOB
+    4 UNTUPLE
+  }>
+  __tact_context_get_sender PROCINLINE:<{
+    __tact_context_sender GETGLOB
+  }>
+  __tact_store_bool PROCINLINE:<{
+    SWAP
+    1 STI
+  }>
+  __tact_slice_eq_bits PROCINLINE:<{
+    SDEQ
+  }>
+  __tact_dict_set_code PROCINLINE:<{
+    s0 s2 XCHG
+    16 PUSHINT
+    DICTUSETREF
+  }>
+  __tact_dict_get_code PROCINLINE:<{
+    SWAP
+    16 PUSHINT
+    DICTUGETREF
+    NULLSWAPIFNOT
+    135 THROWIFNOT
+  }>
+  $Deploy$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    2490013878 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    SWAP
+  }>
+  $DeployOk$_store PROCINLINE:<{
+    2952335191 PUSHINT
+    ROT
+    32 STU
+    64 STU
+  }>
+  $DeployOk$_store_cell PROCINLINE:<{
+    NEWC
+    SWAP
+    $DeployOk$_store INLINECALLDICT
+    ENDC
+  }>
+  $JettonInternalTransfer$_store PROCREF:<{
+    395134233 PUSHINT
+    s0 s7 XCHG2
+    32 STU
+    s1 s5 XCHG
+    64 STU
+    s0 s3 XCHG2
+    STVARUINT16
+    SWAP
+    __tact_store_address INLINECALLDICT
+    SWAP
+    __tact_store_address INLINECALLDICT
+    SWAP
+    STVARUINT16
+    SWAP
+    STSLICER
+  }>
+  $JettonInternalTransfer$_store_cell PROCINLINE:<{
+    NEWC
+    6 -ROLL
+    $JettonInternalTransfer$_store INLINECALLDICT
+    ENDC
+  }>
+  $JettonBurnNotification$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    2078119902 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    64 LDU
+    LDVARUINT16
+    __tact_load_address INLINECALLDICT
+    SWAP
+    __tact_load_address INLINECALLDICT
+    s1 s4 XCHG
+    s3 s3 s0 XCHG3
+  }>
+  $JettonMint$_load PROCREF:<{
+    32 LDU
+    SWAP
+    2310479113 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    __tact_load_address INLINECALLDICT
+    SWAP
+    __tact_load_address INLINECALLDICT
+    SWAP
+    257 PUSHINT
+    LDIX
+    1 LDI
+    SWAP
+    IF:<{
+      LDREF
+    }>ELSE<{
+      PUSHNULL
+      SWAP
+    }>
+    LDVARUINT16
+    s5 s5 XCPU
+    s1 s5 XCHG
+    s1 s4 XCHG
+    s3 s3 s0 XCHG3
+  }>
+  $PoolParams$_store PROCINLINE:<{
+    s3 s4 XCHG2
+    257 PUSHINT
+    STIX
+    257 PUSHINT
+    STIX
+    257 PUSHINT
+    STIX
+    SWAP
+    NEWC
+    257 PUSHINT
+    STIX
+    ENDC
+    SWAP
+    STREF
+  }>
+  $PoolParams$_load PROCINLINE:<{
+    257 PUSHINT
+    LDIX
+    257 PUSHINT
+    LDIX
+    257 PUSHINT
+    LDIX
+    LDREF
+    SWAP
+    CTOS
+    257 PUSHINT
+    LDIX
+    DROP
+    s1 s4 XCHG
+    s3 s3 s0 XCHG3
+  }>
+  $PayTo$_store PROCINLINE:<{
+    3294648920 PUSHINT
+    s0 s6 XCHG2
+    32 STU
+    s0 s4 XCHG2
+    __tact_store_address INLINECALLDICT
+    ROT
+    STVARUINT16
+    SWAP
+    __tact_store_address INLINECALLDICT
+    SWAP
+    STVARUINT16
+    NEWC
+    ROT
+    __tact_store_address INLINECALLDICT
+    ENDC
+    SWAP
+    STREF
+  }>
+  $PayTo$_store_cell PROCINLINE:<{
+    NEWC
+    5 -ROLL
+    $PayTo$_store INLINECALLDICT
+    ENDC
+  }>
+  $ProvideLiquidity$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    895103077 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    __tact_load_address INLINECALLDICT
+    SWAP
+    LDVARUINT16
+    LDVARUINT16
+    LDVARUINT16
+    4 -ROLL
+  }>
+  $RefundMe$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    1209260035 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    257 PUSHINT
+    LDIX
+    257 PUSHINT
+    LDIX
+    __tact_load_address INLINECALLDICT
+    s3 s3 s0 XCHG3
+  }>
+  $SetFees$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    1422094576 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    LDVARUINT16
+    LDVARUINT16
+    __tact_load_address INLINECALLDICT
+    s3 s3 s0 XCHG3
+  }>
+  $Swap$_load PROCINLINE:<{
+    32 LDU
+    SWAP
+    961172390 PUSHINT
+    EQUAL
+    129 THROWIFNOT
+    __tact_load_address INLINECALLDICT
+    SWAP
+    LDVARUINT16
+    __tact_load_address INLINECALLDICT
+    SWAP
+    __tact_load_address INLINECALLDICT
+    SWAP
+    LDREF
+    SWAP
+    CTOS
+    LDVARUINT16
+    DROP
+    s1 s5 XCHG
+    s1 s4 XCHG
+    s3 s3 s0 XCHG3
+  }>
+  $Pool$_store PROCINLINE:<{
+    s1 21 s() XCHG
+    s0 20 s() XCHG
+    __tact_store_address INLINECALLDICT
+    SWAP
+    s0 18 s() XCHG
+    STVARUINT16
+    SWAP
+    s0 16 s() XCHG
+    STVARUINT16
+    s0 s14 XCHG2
+    __tact_store_address INLINECALLDICT
+    s0 s12 XCHG2
+    STVARUINT16
+    NEWC
+    s0 s11 XCHG2
+    STVARUINT16
+    s0 s9 XCHG2
+    __tact_store_address INLINECALLDICT
+    s0 s7 XCHG2
+    __tact_store_address INLINECALLDICT
+    s0 s5 XCHG2
+    STVARUINT16
+    s0 s3 XCHG2
+    STVARUINT16
+    SWAP
+    NEWC
+    257 PUSHINT
+    STIX
+    s1 s2 XCHG
+    257 PUSHINT
+    STIX
+    NEWC
+    s4 s1 s4 XCHG3
+    s5 s7 XCHG2
+    $PoolParams$_store INLINECALLDICT
+    s0 s4 XCHG
+    NEWC
+    257 PUSHINT
+    STIX
+    s1 s5 XCHG
+    1 STI
+    s0 s5 XCHG2
+    __tact_store_address INLINECALLDICT
+    s1 s6 XCHG
+    STREF
+    s1 s4 XCHG
+    1 STI
+    ENDC
+    s0 s3 XCHG2
+    STREF
+    ENDC
+    ROT
+    STREF
+    ENDC
+    ROT
+    STREF
+    ENDC
+    SWAP
+    STREF
+  }>
+  $Pool$_load PROCINLINE:<{
+    __tact_load_address INLINECALLDICT
+    SWAP
+    LDVARUINT16
+    LDVARUINT16
+    __tact_load_address INLINECALLDICT
+    SWAP
+    LDVARUINT16
+    LDREF
+    SWAP
+    CTOS
+    LDVARUINT16
+    __tact_load_address INLINECALLDICT
+    SWAP
+    __tact_load_address INLINECALLDICT
+    SWAP
+    LDVARUINT16
+    LDVARUINT16
+    LDREF
+    DROP
+    CTOS
+    257 PUSHINT
+    LDIX
+    257 PUSHINT
+    LDIX
+    LDREF
+    DROP
+    CTOS
+    $PoolParams$_load INLINECALLDICT
+    s0 s4 XCHG
+    LDREF
+    DROP
+    CTOS
+    257 PUSHINT
+    LDIX
+    1 LDI
+    __tact_load_address INLINECALLDICT
+    SWAP
+    LDREF
+    1 LDI
+    DROP
+    16 s() 21 s() XCHG
+    16 s() 20 s() XCHG
+    16 s() 19 s() XCHG
+    16 s() 18 s() XCHG
+    16 s() 17 s() XCHG
+    s7 s8 XCHG
+    s6 s7 XCHG
+    s5 s6 XCHG
+  }>
+  $StateInit$_get_code PROCINLINE:<{
+    DROP
+  }>
+  $StateInit$_not_null PROCINLINE:<{
+    DUP
+    ISNULL
+    128 THROWIF
+        2 UNTUPLE
+  }>
+  $Context$_get_sender PROCINLINE:<{
+    s2 s3 XCHG
+    3 BLKDROP
+  }>
+  $JettonData$_to_external PROCINLINE:<{
+  }>
+  $PoolData$_to_external PROCINLINE:<{
+  }>
+  $ExpectedLiquidity$_to_external PROCINLINE:<{
+  }>
+  $Reserves$_to_external PROCINLINE:<{
+  }>
+  $ExampleJettonWallet$init$_store PROCINLINE:<{
+    -ROT
+    __tact_store_address INLINECALLDICT
+    SWAP
+    __tact_store_address INLINECALLDICT
+  }>
+  $Pool$init$_load PROCREF:<{
+    __tact_load_address INLINECALLDICT
+    SWAP
+    257 PUSHINT
+    LDIX
+    257 PUSHINT
+    LDIX
+    LDREF
+    SWAP
+    CTOS
+    __tact_load_address INLINECALLDICT
+    SWAP
+    257 PUSHINT
+    LDIX
+    257 PUSHINT
+    LDIX
+    LDREF
+    DROP
+    CTOS
+    __tact_load_address INLINECALLDICT
+    SWAP
+    __tact_load_address INLINECALLDICT
+    SWAP
+    257 PUSHINT
+    LDIX
+    LDREF
+    DROP
+    CTOS
+    257 PUSHINT
+    LDIX
+    257 PUSHINT
+    LDIX
+    257 PUSHINT
+    LDIX
+    LDREF
+    DROP
+    CTOS
+    257 PUSHINT
+    LDIX
+    DROP
+    s10 s13 XCHG
+    s10 s12 XCHG
+    s10 s11 XCHG
+  }>
+  $PoolParams$_constructor_initialA_futureA_initialTime_futureTime PROCINLINE:<{
+  }>
+  $global_emptyCell PROCINLINE:<{
+        NEWC
+        ENDC
+  }>
+  $Pool$_contract_init PROCREF:<{
+    2000 PUSHINT
+    DUP
+    0 PUSHINT
+    DUP
+    $PoolParams$_constructor_initialA_futureA_initialTime_futureTime INLINECALLDICT
+    FALSE
+    17 s() PUSH
+    TRUE
+    $global_emptyCell INLINECALLDICT
+    s2 20 s() XCHG
+    s9 s10 XCHG
+    s8 s9 XCHG
+    s7 s8 XCHG
+    s6 s7 XCHG
+    s5 s6 XCHG
+    s4 s5 XCHG
+    s0 s3 XCHG2
+  }>
+  $Pool$_contract_load PROCREF:<{
+    c4 PUSH
+    CTOS
+    LDREF
+    SWAP
+    __tact_context_sys SETGLOB
+    1 LDI
+    SWAP
+    IFJMP:<{
+      $Pool$_load INLINECALLDICT
+      21 s() POP
+      19 s() 20 s() XCHG
+      18 s() 19 s() XCHG
+      17 s() 18 s() XCHG
+      16 s() 17 s() XCHG
+      s15 16 s() XCHG
+      15 ROLL
+    }>
+    MYADDR
+    11 PLDU
+    10 PUSHPOW2
+    EQUAL
+    137 THROWIFNOT
+    $Pool$init$_load INLINECALLDICT
+    s0 s13 XCHG
+    ENDS
+    12 ROLL
+    $Pool$_contract_init INLINECALLDICT
+  }>
+  $Pool$_contract_store PROCINLINE:<{
+    NEWC
+    __tact_context_sys GETGLOB
+    SWAP
+    STREF
+    TRUE
+    SWAP
+    1 STI
+    s0 21 s() XCHG
+    s0 20 s() XCHG
+    s0 19 s() XCHG
+    s0 18 s() XCHG
+    s0 17 s() XCHG
+    s0 16 s() XCHG
+    15 -ROLL
+    $Pool$_store INLINECALLDICT
+    ENDC
+    c4 POP
+  }>
+  $Cell$_fun_asSlice PROCINLINE:<{
+        CTOS
+  }>
+  $global_emptySlice PROCINLINE:<{
+    $global_emptyCell INLINECALLDICT
+    $Cell$_fun_asSlice INLINECALLDICT
+  }>
+  $global_contractAddress PROCINLINE:<{
+    0 PUSHINT
+    -ROT
+    __tact_compute_contract_address INLINECALLDICT
+  }>
+  $global_send PROCREF:<{
+        NEWC
+    1 PUSHINT
+    SWAP
+    2 STI
+    s0 s7 XCHG2
+    __tact_store_bool INLINECALLDICT
+    0 PUSHINT
+    SWAP
+    3 STI
+    s0 s5 XCHG2
+    __tact_store_address INLINECALLDICT
+    s0 s3 XCHG2
+        STVARUINT16
+    0 PUSHINT
+    SWAP
+    105 STI
+    s3 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+    }>ELSE<{
+      s4 PUSH
+      ISNULL
+      NOT
+    }>
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+          NEWC
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+            STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      s4 PUSH
+      ISNULL
+      NOT
+      IF:<{
+        TRUE
+        __tact_store_bool INLINECALLDICT
+        s0 s4 XCHG
+        __tact_not_null INLINECALLDICT
+        s0 s4 XCHG2
+            STREF
+      }>ELSE<{
+        s4 POP
+        s0 s3 XCHG
+        FALSE
+        __tact_store_bool INLINECALLDICT
+      }>
+      FALSE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      s0 s2 XCHG
+          ENDC
+      ROT
+          STREF
+    }>ELSE<{
+      s3 POP
+      s3 POP
+      SWAP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+    OVER
+    ISNULL
+    NOT
+    IF:<{
+      TRUE
+      __tact_store_bool INLINECALLDICT
+      SWAP
+      __tact_not_null INLINECALLDICT
+      SWAP
+          STREF
+    }>ELSE<{
+      NIP
+      FALSE
+      __tact_store_bool INLINECALLDICT
+    }>
+        ENDC
+    SWAP
+        SENDMSG
+  }>
+  $ExampleJettonWallet$_init_child PROCREF:<{
+    s0 s2 XCHG
+    CTOS
+    LDDICT
+    DROP
+    NEWDICT
+    SWAP
+    40421 PUSHINT
+    __tact_dict_get_code INLINECALLDICT
+    SWAP
+    40421 PUSHINT
+    s2 PUSH
+    __tact_dict_set_code INLINECALLDICT
+    NEWC
+    SWAP
+    NEWC
+    STDICT
+    ENDC
+    SWAP
+    STREF
+    FALSE
+    SWAP
+    1 STI
+    s0 s0 s3 XCHG3
+    $ExampleJettonWallet$init$_store INLINECALLDICT
+    ENDC
+  }>
+  $SendParameters$_constructor_bounce_to_value_mode_body_code_data PROCINLINE:<{
+  }>
+  $SendParameters$_constructor_to_value_bounce_mode_body PROCINLINE:<{
+    s2 s4 XCHG
+    s2 s3 XCHG
+    PUSHNULL
+    PUSHNULL
+  }>
+  $SendParameters$_constructor_to_value_bounce_mode_body_code_data PROCINLINE:<{
+    s4 s6 XCHG
+    s4 s5 XCHG
+  }>
+  $JettonInternalTransfer$_constructor_query_id_amount_response_address_from_forward_ton_amount_forward_payload PROCINLINE:<{
+    s2 s3 XCHG
+  }>
+  $JettonMint$_constructor_origin_receiver_amount_custom_payload_forward_ton_amount_forward_payload PROCINLINE:<{
+  }>
+  $Pool$_fun__mint_validate PROCINLINE:<{
+    10 BLKDROP
+    30061 PUSHINT
+    s4 PUSH
+    THROWANYIFNOT
+  }>
+  $Pool$_fun_calculate_jetton_wallet_init PROCINLINE:<{
+    __tact_context_sys GETGLOB
+        MYADDR
+    s1 s2 XCHG
+    $ExampleJettonWallet$_init_child INLINECALLDICT
+  }>
+  $Pool$_fun__mint PROCINLINE:<{
+    s2 POP
+    s5 POP
+    s5 POP
+    s5 POP
+    s5 POP
+    21 s() 25 s() XCHG
+    20 s() 24 s() XCHG
+    19 s() 23 s() XCHG
+    18 s() 22 s() XCHG
+    17 s() 25 s() XCHG
+    16 s() 24 s() XCHG
+    s15 23 s() XCHG
+    s14 22 s() XCHG
+    s13 25 s() XCHG
+    s12 24 s() XCHG
+    s11 23 s() XCHG
+    s10 22 s() XCHG
+    s9 25 s() XCHG
+    s8 24 s() XCHG
+    s7 23 s() XCHG
+    s6 22 s() XCHG
+    s5 25 s() XCHG
+    s4 24 s() XCHG
+    s3 23 s() XCHG
+    s2 22 s() XCHG
+    s1 25 s() XCHG
+    s0 24 s() XCHG
+    $Pool$_fun_calculate_jetton_wallet_init INLINECALLDICT
+    s0 s6 XCHG
+    24 s() PUSH
+    ADD
+    s1 s6 PUSH2
+    $global_contractAddress INLINECALLDICT
+    0 PUSHINT
+    TRUE
+    64 PUSHINT
+    s2 PUSH
+        MYADDR
+    s1 s5 XCHG
+    s4 30 s() XCHG
+    s3 31 s() XCHG
+    s0 s2 XCHG
+    s1 32 s() XCHG
+    s0 29 s() XCHG
+    $JettonInternalTransfer$_constructor_query_id_amount_response_address_from_forward_ton_amount_forward_payload INLINECALLDICT
+    $JettonInternalTransfer$_store_cell INLINECALLDICT
+    s6 27 s() XCHG
+    s5 25 s() XCHG
+    s4 26 s() XCHG
+    s3 24 s() XCHG
+    s0 s0 s7 XCHG3
+    $SendParameters$_constructor_to_value_bounce_mode_body_code_data INLINECALLDICT
+    $global_send INLINECALLDICT
+    DROP
+    16 s() 20 s() XCHG
+    s15 19 s() XCHG
+    s14 18 s() XCHG
+    s13 17 s() XCHG
+    s12 16 s() XCHG
+    s11 s15 XCHG
+    s10 s14 XCHG
+    s9 s13 XCHG
+    s8 s12 XCHG
+    s7 s11 XCHG
+    s6 s10 XCHG
+    s5 s9 XCHG
+    s4 s8 XCHG
+    s3 s7 XCHG
+    s6 s1 s4 XCHG3
+    s3 s3 XCHG2
+    s0 s5 XCHG
+  }>
+  $Pool$_fun__mint_lp PROCREF:<{
+    __tact_context_get INLINECALLDICT
+    $global_emptyCell INLINECALLDICT
+    0 PUSHINT
+    $global_emptySlice INLINECALLDICT
+    s5 PUSH
+    s0 s5 XCHG
+    s4 s9 XCHG
+    s0 s8 XCHG
+    3 -ROLL
+    $JettonMint$_constructor_origin_receiver_amount_custom_payload_forward_ton_amount_forward_payload INLINECALLDICT
+    20 s() 30 s() XCHG
+    19 s() 29 s() XCHG
+    18 s() 28 s() XCHG
+    17 s() 27 s() XCHG
+    16 s() 26 s() XCHG
+    s15 25 s() XCHG
+    s14 24 s() XCHG
+    s13 23 s() XCHG
+    s12 22 s() XCHG
+    s11 21 s() XCHG
+    s10 30 s() XCHG
+    s9 29 s() XCHG
+    s8 28 s() XCHG
+    s7 27 s() XCHG
+    s6 26 s() XCHG
+    s5 25 s() XCHG
+    s4 24 s() XCHG
+    s3 23 s() XCHG
+    s2 22 s() XCHG
+    s1 21 s() XCHG
+    s0 30 s() XCHG
+    27 s() PUSH
+    27 s() PUSH
+    30 s() PUSH
+    32 s() PUSH
+    29 s() PUSH
+    29 s() PUSH
+    29 s() PUSH
+    29 s() PUSH
+    29 s() PUSH
+    39 s() PUSH
+    $Pool$_fun__mint_validate INLINECALLDICT
+    20 s() 30 s() XCHG
+    19 s() 29 s() XCHG
+    18 s() 28 s() XCHG
+    17 s() 27 s() XCHG
+    16 s() 26 s() XCHG
+    s15 25 s() XCHG
+    s14 24 s() XCHG
+    s13 23 s() XCHG
+    s12 22 s() XCHG
+    s11 21 s() XCHG
+    s10 20 s() XCHG
+    s9 19 s() XCHG
+    s8 18 s() XCHG
+    s7 17 s() XCHG
+    s6 16 s() XCHG
+    s5 s15 XCHG
+    s4 s14 XCHG
+    s3 s13 XCHG
+    s12 s11 s10 XCHG3
+    s7 s9 XCHG
+    s6 s8 XCHG
+    s6 s7 XCHG
+    $Pool$_fun__mint INLINECALLDICT
+  }>
+  $Pool$_fun_within1 PROCREF:<{
+    2DUP
+    GREATER
+    IFJMP:<{
+      SUB
+      2 LESSINT
+    }>
+    SWAP
+    SUB
+    2 LESSINT
+  }>
+  $Pool$_fun_computeDFromAdjustedBalances PROCREF:<{
+    c2 SAVE
+    SAMEALTSAVE
+    2DUP
+    ADD
+    DUP
+    0 NEQINT
+    IFJMP:<{
+      s0 s3 PUXC
+      1 LSHIFT#
+      DUP
+      DEC
+      0 PUSHINT
+      8 PUSHPOW2
+      REPEAT:<{
+        s6 s6 PUSH2
+        MUL
+        s6 PUSH
+        DIV
+        s7 PUSH
+        MUL
+        s5 PUSH
+        DIV
+        2 RSHIFT#
+        s7 s3 s4 PUSH3
+        MUL
+        s2 PUSH
+        1 LSHIFT#
+        ADD
+        s9 PUSH
+        MUL
+        s4 s9 PUXC
+        MUL
+        s0 s2 XCHG
+        3 MULCONST
+        s1 s2 XCHG
+        ADD
+        s1 s8 XCHG
+        DIV
+        SWAP
+        INC
+        21 s() 28 s() XCHG
+        20 s() 27 s() XCHG
+        19 s() 26 s() XCHG
+        18 s() 25 s() XCHG
+        17 s() 24 s() XCHG
+        16 s() 23 s() XCHG
+        s15 22 s() XCHG
+        s14 28 s() XCHG
+        s13 27 s() XCHG
+        s12 26 s() XCHG
+        s11 25 s() XCHG
+        s10 24 s() XCHG
+        s9 23 s() XCHG
+        s8 22 s() XCHG
+        s7 28 s() XCHG
+        s6 27 s() XCHG
+        s5 26 s() XCHG
+        s4 25 s() XCHG
+        s3 24 s() XCHG
+        s2 23 s() XCHG
+        s1 22 s() XCHG
+        22 s() PUSH
+        SWAP
+        s0 29 s() XCHG
+        $Pool$_fun_within1 INLINECALLDICT
+        IFJMP:<{
+          22 s() POP
+          22 s() POP
+          22 s() POP
+          22 s() POP
+          22 s() POP
+          22 s() POP
+          s14 21 s() XCHG
+          s13 20 s() XCHG
+          s12 19 s() XCHG
+          s11 18 s() XCHG
+          s10 17 s() XCHG
+          s9 16 s() XCHG
+          s8 s15 XCHG
+          7 8 BLKSWAP
+          RETALT
+        }>
+        20 s() 27 s() XCHG
+        19 s() 26 s() XCHG
+        18 s() 25 s() XCHG
+        17 s() 24 s() XCHG
+        16 s() 23 s() XCHG
+        s15 22 s() XCHG
+        s14 21 s() XCHG
+        s13 20 s() XCHG
+        s12 19 s() XCHG
+        s11 18 s() XCHG
+        s10 17 s() XCHG
+        s9 16 s() XCHG
+        s8 s15 XCHG
+        s7 s14 XCHG
+        s6 s13 XCHG
+        s5 s12 XCHG
+        s4 s11 XCHG
+        s3 s10 XCHG
+        s9 s1 s7 XCHG3
+        s8 s6 XCHG2
+      }>
+      6 BLKDROP
+    }>
+    4 BLKDROP
+    0 PUSHINT
+  }>
+  $Pool$_fun__computeInvariant PROCREF:<{
+    s13 s1 PUXC
+    MUL
+    s12 s1 PUXC
+    MUL
+    $Pool$_fun_computeDFromAdjustedBalances INLINECALLDICT
+  }>
+  $Pool$_fun_getA PROCREF:<{
+    c2 SAVE
+    SAMEALTSAVE
+        NOW
+    OVER
+    LESS
+    IF:<{
+      s2 s3 PUSH2
+      LESS
+      IFJMP:<{
+        s3 s2 PUXC
+        SUB
+            NOW
+        s2 PUSH
+        SUB
+        2SWAP
+        SUB
+        -ROT
+        MUL
+        SWAP
+        DIV
+        SUB
+        RETALT
+      }>
+      s2 s3 XCHG
+      3 BLKDROP
+    }>ELSE<{
+      s2 s3 XCHG
+      3 BLKDROP
+    }>
+  }>
+  $PayTo$_constructor_owner_tokenAAmount_walletTokenAAddress_tokenBAmount_walletTokenBAddress PROCINLINE:<{
+  }>
+  $Pool$_fun_send_message_nobounce PROCREF:<{
+    s2 s3 XCHG
+    FALSE
+    s0 s2 XCHG
+    $SendParameters$_constructor_to_value_bounce_mode_body INLINECALLDICT
+    $global_send INLINECALLDICT
+    DROP
+  }>
+  $Pool$_fun_call_pay_to PROCREF:<{
+    19 s() PUSH
+    SWAP
+    19 s() PUSH
+    $PayTo$_constructor_owner_tokenAAmount_walletTokenAAddress_tokenBAmount_walletTokenBAddress INLINECALLDICT
+    $PayTo$_store_cell INLINECALLDICT
+    23 s() PUSH
+    s0 s2 XCHG
+    $Pool$_fun_send_message_nobounce INLINECALLDICT
+  }>
+  $Pool$_fun_burn_notification_hook PROCINLINE:<{
+    DROP
+    6 2 BLKDROP2
+    TRUE
+    s10 s9 s8 PUSH3
+    s10 PUSH
+        NOP
+    24 s() 26 s() XCHG
+    23 s() 25 s() XCHG
+    22 s() 26 s() XCHG
+    21 s() 25 s() XCHG
+    20 s() 26 s() XCHG
+    19 s() 25 s() XCHG
+    18 s() 26 s() XCHG
+    17 s() 25 s() XCHG
+    16 s() 26 s() XCHG
+    s15 25 s() XCHG
+    s14 26 s() XCHG
+    s13 25 s() XCHG
+    s12 26 s() XCHG
+    s11 25 s() XCHG
+    s10 26 s() XCHG
+    s9 25 s() XCHG
+    s8 26 s() XCHG
+    s7 25 s() XCHG
+    s6 26 s() XCHG
+    s5 25 s() XCHG
+    $Pool$_fun_getA INLINECALLDICT
+    DROP
+    22 s() PUSH
+    s13 PUSH
+    MUL
+    s5 PUSH
+    DIV
+    s0 23 s() XCHG
+    s12 PUSH
+    MUL
+    s5 PUSH
+    DIV
+    s0 s13 XCHG
+    23 s() PUSH
+    SUB
+    s12 s13 XCPU
+    SUB
+    21 s() 23 s() XCHG
+    20 s() 22 s() XCHG
+    19 s() 21 s() XCHG
+    18 s() 20 s() XCHG
+    17 s() 19 s() XCHG
+    16 s() 18 s() XCHG
+    s15 17 s() XCHG
+    s14 16 s() XCHG
+    s12 s15 XCHG
+    s0 s14 XCHG
+    s11 s13 XCHG
+    s10 s12 XCHG
+    s9 s11 XCHG
+    s8 s10 XCHG
+    s7 s9 XCHG
+    s6 s8 XCHG
+    s5 s7 XCHG
+    s4 s6 XCHG
+    s3 s5 XCHG
+    s4 s3 s0 XCHG3
+    0 PUSHINT
+    s0 s3 XCHG
+    64 PUSHINT
+    s0 s3 XCHG
+    $Pool$_fun_call_pay_to INLINECALLDICT
+  }>
+  $PoolData$_constructor_reserve0_reserve1_token0Address_token1Address_lpFee_protocolFee_protocolFeeAddress_collectedToken0ProtocolFee_collectedToken1ProtocolFee PROCINLINE:<{
+  }>
+  $Pool$_fun_get_pool_data PROCREF:<{
+    s12 s11 s14 PUSH3
+    16 s() PUSH
+    23 s() PUSH
+    23 s() PUSH
+    23 s() PUSH
+    23 s() PUSH
+    23 s() PUSH
+    $PoolData$_constructor_reserve0_reserve1_token0Address_token1Address_lpFee_protocolFee_protocolFeeAddress_collectedToken0ProtocolFee_collectedToken1ProtocolFee INLINECALLDICT
+  }>
+  $Pool$_fun_getSwapFee PROCREF:<{
+    4 BLKDROP
+    50 PUSHINT
+  }>
+  $Pool$_fun__getSwapFee PROCREF:<{
+    __tact_context_get INLINECALLDICT
+    $Context$_get_sender INLINECALLDICT
+    $Pool$_fun_getSwapFee INLINECALLDICT
+  }>
+  $Pool$_fun_getAmountOut PROCREF:<{
+    DROP
+    0 PUSHINT
+    s11 s10 s9 PUSH3
+    s11 PUSH
+        NOP
+    24 s() 27 s() XCHG
+    23 s() 26 s() XCHG
+    22 s() 25 s() XCHG
+    21 s() 27 s() XCHG
+    20 s() 26 s() XCHG
+    19 s() 25 s() XCHG
+    18 s() 27 s() XCHG
+    17 s() 26 s() XCHG
+    16 s() 25 s() XCHG
+    s15 27 s() XCHG
+    s14 26 s() XCHG
+    s13 25 s() XCHG
+    s12 27 s() XCHG
+    s11 26 s() XCHG
+    s10 25 s() XCHG
+    s9 27 s() XCHG
+    s8 26 s() XCHG
+    s7 25 s() XCHG
+    s6 27 s() XCHG
+    s5 26 s() XCHG
+    s4 25 s() XCHG
+    $Pool$_fun_getA INLINECALLDICT
+    2DROP
+    s13 s(-1) PUXC
+    s0 23 s() XCHG
+    __tact_slice_eq_bits INLINECALLDICT
+    19 s() 21 s() XCHG
+    18 s() 20 s() XCHG
+    17 s() 19 s() XCHG
+    16 s() 18 s() XCHG
+    s15 17 s() XCHG
+    s14 16 s() XCHG
+    s13 PUSH
+    s0 16 s() XCHG
+    s13 PUSH
+    s0 16 s() XCHG
+    s13 s15 XCHG
+    s12 s14 XCHG
+    s11 s13 XCHG
+    s10 s12 XCHG
+    s9 s11 XCHG
+    s8 s10 XCHG
+    s7 s9 XCHG
+    s6 s8 XCHG
+    s5 s7 XCHG
+    s4 s6 XCHG
+    s3 s5 XCHG
+    s0 24 s() XCHG
+    s1 s3 s4 XCHG3
+    $Pool$_fun__getSwapFee INLINECALLDICT
+    DROP
+    20 s() 21 s() XCHG
+    19 s() 20 s() XCHG
+    18 s() 19 s() XCHG
+    17 s() 18 s() XCHG
+    16 s() 17 s() XCHG
+    s15 16 s() XCHG
+    15 ROLL
+  }>
+  $Pool$_fun_getTokenOut PROCREF:<{
+    s10 s9 s8 PUSH3
+    s10 PUSH
+        NOP
+    24 s() 26 s() XCHG
+    23 s() 25 s() XCHG
+    22 s() 26 s() XCHG
+    21 s() 25 s() XCHG
+    20 s() 26 s() XCHG
+    19 s() 25 s() XCHG
+    18 s() 26 s() XCHG
+    17 s() 25 s() XCHG
+    16 s() 26 s() XCHG
+    s15 25 s() XCHG
+    s14 26 s() XCHG
+    s13 25 s() XCHG
+    s12 26 s() XCHG
+    s11 25 s() XCHG
+    s10 26 s() XCHG
+    s9 25 s() XCHG
+    s8 26 s() XCHG
+    s7 25 s() XCHG
+    s6 26 s() XCHG
+    s5 25 s() XCHG
+    s4 26 s() XCHG
+    $Pool$_fun_getA INLINECALLDICT
+    s13 s(-1) PUXC
+    s0 23 s() XCHG
+    ADD
+    s12 s(-1) PUXC
+    s0 24 s() XCHG
+    ADD
+    21 s() 22 s() XCHG
+    20 s() 21 s() XCHG
+    19 s() 20 s() XCHG
+    18 s() 19 s() XCHG
+    17 s() 18 s() XCHG
+    16 s() 17 s() XCHG
+    s15 16 s() XCHG
+    s14 s15 XCHG
+    s13 s14 XCHG
+    s12 s13 XCHG
+    s11 s12 XCHG
+    s10 s11 XCHG
+    s9 s10 XCHG
+    s8 s9 XCHG
+    s7 s8 XCHG
+    s6 s7 XCHG
+    s5 s6 XCHG
+    s4 s5 XCHG
+    s3 s4 XCHG
+    s1 s3 s0 XCHG3
+    OVER
+    s0 24 s() XCHG
+    SWAP
+    $Pool$_fun__computeInvariant INLINECALLDICT
+    s13 s12 PUSH2
+    s2 24 s() XCHG
+    $Pool$_fun__computeInvariant INLINECALLDICT
+    s5 PUSH
+    0 EQINT
+    IF:<{
+      DROP
+      s0 21 s() XCHG
+      3000 PUSHINT
+      SUB
+    }>ELSE<{
+      s0 22 s() XCHG
+      22 s() PUSH
+      SUB
+      s5 s(-1) PUXC
+      MUL
+      SWAP
+      s0 22 s() XCHG
+      DIV
+    }>
+    20 s() 21 s() XCHG
+    19 s() 20 s() XCHG
+    18 s() 19 s() XCHG
+    17 s() 18 s() XCHG
+    16 s() 17 s() XCHG
+    s15 16 s() XCHG
+    s14 s15 XCHG
+    s13 s14 XCHG
+    s12 s13 XCHG
+    s11 s12 XCHG
+    s10 s11 XCHG
+    s9 s10 XCHG
+    s8 s9 XCHG
+    s7 s8 XCHG
+    s6 s7 XCHG
+    s5 s6 XCHG
+    s4 s5 XCHG
+    s3 s4 XCHG
+    s1 s3 s0 XCHG3
+  }>
+  $ExpectedLiquidity$_constructor_amount0_amount1 PROCINLINE:<{
+  }>
+  $Pool$_fun_get_expected_liquidity PROCREF:<{
+    s0 s13 PUSH2
+    MUL
+    s6 PUSH
+    DIV
+    s1 s13 XCPU
+    MUL
+    s6 PUSH
+    DIV
+    $ExpectedLiquidity$_constructor_amount0_amount1 INLINECALLDICT
+  }>
+  $Pool$_fun_get_reserve0 PROCREF:<{
+    s12 PUSH
+  }>
+  $Pool$_fun_get_reserve1 PROCREF:<{
+    s11 PUSH
+  }>
+  $Reserves$_constructor_reserve0_reserve1 PROCINLINE:<{
+  }>
+  $Pool$_fun_getReserves PROCREF:<{
+    s12 s11 PUSH2
+    $Reserves$_constructor_reserve0_reserve1 INLINECALLDICT
+  }>
+  $Pool$_fun_getter_A PROCREF:<{
+    s8 s7 s6 PUSH3
+    s8 PUSH
+        NOP
+    $Pool$_fun_getA INLINECALLDICT
+  }>
+  $Pool$_fun_getter_oldInvariant PROCREF:<{
+    s8 s7 s6 PUSH3
+    s8 PUSH
+        NOP
+    $Pool$_fun_getA INLINECALLDICT
+    s13 s12 PUSH2
+    $Pool$_fun__computeInvariant INLINECALLDICT
+  }>
+  $Pool$_fun_getter_newInvariant PROCREF:<{
+    s10 s9 s8 PUSH3
+    s10 PUSH
+        NOP
+    24 s() 26 s() XCHG
+    23 s() 25 s() XCHG
+    22 s() 26 s() XCHG
+    21 s() 25 s() XCHG
+    20 s() 26 s() XCHG
+    19 s() 25 s() XCHG
+    18 s() 26 s() XCHG
+    17 s() 25 s() XCHG
+    16 s() 26 s() XCHG
+    s15 25 s() XCHG
+    s14 26 s() XCHG
+    s13 25 s() XCHG
+    s12 26 s() XCHG
+    s11 25 s() XCHG
+    s10 26 s() XCHG
+    s9 25 s() XCHG
+    s8 26 s() XCHG
+    s7 25 s() XCHG
+    s6 26 s() XCHG
+    s5 25 s() XCHG
+    s4 26 s() XCHG
+    $Pool$_fun_getA INLINECALLDICT
+    s13 s(-1) PUXC
+    s0 23 s() XCHG
+    ADD
+    s12 s(-1) PUXC
+    s0 24 s() XCHG
+    ADD
+    21 s() 23 s() XCHG
+    20 s() 22 s() XCHG
+    19 s() 21 s() XCHG
+    18 s() 20 s() XCHG
+    17 s() 19 s() XCHG
+    16 s() 18 s() XCHG
+    s15 17 s() XCHG
+    s14 16 s() XCHG
+    s13 s15 XCHG
+    s12 s14 XCHG
+    s11 s13 XCHG
+    s10 s12 XCHG
+    s9 s11 XCHG
+    s8 s10 XCHG
+    s7 s9 XCHG
+    s6 s8 XCHG
+    s5 s7 XCHG
+    s4 s6 XCHG
+    s3 s5 XCHG
+    s4 s3 s0 XCHG3
+    $Pool$_fun__computeInvariant INLINECALLDICT
+  }>
+  $Pool$_fun_getter_computeDFromAdjustedBalances PROCREF:<{
+    s10 s9 s8 PUSH3
+    s10 PUSH
+        NOP
+    24 s() 26 s() XCHG
+    23 s() 25 s() XCHG
+    22 s() 26 s() XCHG
+    21 s() 25 s() XCHG
+    20 s() 26 s() XCHG
+    19 s() 25 s() XCHG
+    18 s() 26 s() XCHG
+    17 s() 25 s() XCHG
+    16 s() 26 s() XCHG
+    s15 25 s() XCHG
+    s14 26 s() XCHG
+    s13 25 s() XCHG
+    s12 26 s() XCHG
+    s11 25 s() XCHG
+    s10 26 s() XCHG
+    s9 25 s() XCHG
+    s8 26 s() XCHG
+    s7 25 s() XCHG
+    s6 26 s() XCHG
+    s5 25 s() XCHG
+    s4 26 s() XCHG
+    $Pool$_fun_getA INLINECALLDICT
+    21 s() 23 s() XCHG
+    20 s() 22 s() XCHG
+    19 s() 21 s() XCHG
+    18 s() 20 s() XCHG
+    17 s() 19 s() XCHG
+    16 s() 18 s() XCHG
+    s15 17 s() XCHG
+    s14 16 s() XCHG
+    s13 s15 XCHG
+    2 13 BLKSWAP
+    $Pool$_fun_computeDFromAdjustedBalances INLINECALLDICT
+  }>
+  $Pool$_fun_getter_ADD_NONE PROCREF:<{
+        B{b5ee9c72410101010024000043800000000000000000000000000000000000000000000000000000000000000000104aec829d} B>boc <s PUSHSLICE
+  }>
+  $Pool$_fun_forward PROCREF:<{
+    PUSHNULL
+    PUSHNULL
+    s2 PUSH
+    ISNULL
+    NOT
+    IF:<{
+      2DROP
+      $StateInit$_not_null INLINECALLDICT
+      SWAP
+    }>ELSE<{
+      s2 POP
+    }>
+    s2 s4 XCHG
+    0 PUSHINT
+    s0 s3 XCHG
+    s0 s4 XCHG
+    66 PUSHINT
+    s2 s3 XCHG2
+    $SendParameters$_constructor_bounce_to_value_mode_body_code_data INLINECALLDICT
+    $global_send INLINECALLDICT
+    DROP
+  }>
+  $Pool$_fun_notify PROCINLINE:<{
+    __tact_context_get_sender INLINECALLDICT
+    SWAP
+    FALSE
+    PUSHNULL
+    $Pool$_fun_forward INLINECALLDICT
+  }>
+  $Pool$_fun_send_empty_message PROCREF:<{
+    TRUE
+    $global_emptyCell INLINECALLDICT
+    s3 s4 XCHG
+    s1 s2 XCHG
+    $SendParameters$_constructor_to_value_bounce_mode_body INLINECALLDICT
+    $global_send INLINECALLDICT
+    DROP
+  }>
+  $AmountOut$_constructor_amountOut_feeIn PROCINLINE:<{
+  }>
+  $Pool$_fun_getY PROCREF:<{
+    c2 SAVE
+    SAMEALTSAVE
+    s0 s0 PUSH2
+    MUL
+    s2 PUSH
+    1 LSHIFT#
+    DIV
+    OVER
+    MUL
+    s3 PUSH
+    2 LSHIFT#
+    DIV
+    s0 s3 XCHG
+    1 LSHIFT#
+    s1 s(-1) PUXC
+    DIV
+    s1 s2 XCHG
+    ADD
+    OVER
+    0 PUSHINT
+    8 PUSHPOW2
+    REPEAT:<{
+      s1 s1 s1 PUSH3
+      MUL
+      s6 PUSH
+      ADD
+      s0 s3 XCHG
+      1 LSHIFT#
+      s4 PUSH
+      ADD
+      s5 PUSH
+      SUB
+      s1 s3 XCHG
+      DIV
+      SWAP
+      INC
+      21 s() 26 s() XCHG
+      20 s() 25 s() XCHG
+      19 s() 24 s() XCHG
+      18 s() 23 s() XCHG
+      17 s() 22 s() XCHG
+      16 s() 26 s() XCHG
+      s15 25 s() XCHG
+      s14 24 s() XCHG
+      s13 23 s() XCHG
+      s12 22 s() XCHG
+      s11 26 s() XCHG
+      s10 25 s() XCHG
+      s9 24 s() XCHG
+      s8 23 s() XCHG
+      s7 22 s() XCHG
+      s6 26 s() XCHG
+      s5 25 s() XCHG
+      s4 24 s() XCHG
+      s3 23 s() XCHG
+      s2 22 s() XCHG
+      s1 26 s() XCHG
+      26 s() PUSH
+      SWAP
+      s0 23 s() XCHG
+      $Pool$_fun_within1 INLINECALLDICT
+      IFJMP:<{
+        21 s() POP
+        21 s() POP
+        21 s() POP
+        21 s() POP
+        16 s() 21 s() XCHG
+        s15 20 s() XCHG
+        s14 19 s() XCHG
+        s13 18 s() XCHG
+        s12 17 s() XCHG
+        s11 16 s() XCHG
+        5 11 BLKSWAP
+        RETALT
+      }>
+      20 s() 25 s() XCHG
+      19 s() 24 s() XCHG
+      18 s() 23 s() XCHG
+      17 s() 22 s() XCHG
+      16 s() 21 s() XCHG
+      s15 20 s() XCHG
+      s14 19 s() XCHG
+      s13 18 s() XCHG
+      s12 17 s() XCHG
+      s11 16 s() XCHG
+      s10 s15 XCHG
+      s9 s14 XCHG
+      s8 s13 XCHG
+      s7 s12 XCHG
+      s6 s11 XCHG
+      s5 s10 XCHG
+      s4 s9 XCHG
+      s3 s8 XCHG
+      s7 s5 s5 XCHG3
+      s0 s6 XCHG
+    }>
+    s1 s4 XCHG
+    4 BLKDROP
+  }>
+  $Pool$_fun__getAmountOut PROCREF:<{
+    0 PUSHINT
+    s0 s4 PUSH2
+    0 NEQINT
+    IF:<{
+      2DROP
+      s0 s2 XCHG
+      16 s() PUSH
+      MUL
+      s1 s15 XCPU
+      MUL
+      s3 s4 PUXC
+      MUL
+      10000 PUSHINT
+      DIV
+      s3 s3 XCPU
+      SUB
+      20 s() 26 s() XCHG
+      19 s() 25 s() XCHG
+      18 s() 24 s() XCHG
+      17 s() 23 s() XCHG
+      16 s() 22 s() XCHG
+      s15 21 s() XCHG
+      s14 26 s() XCHG
+      s13 25 s() XCHG
+      s12 24 s() XCHG
+      s11 23 s() XCHG
+      s10 22 s() XCHG
+      s9 21 s() XCHG
+      s8 26 s() XCHG
+      s7 25 s() XCHG
+      s6 24 s() XCHG
+      s5 23 s() XCHG
+      s4 22 s() XCHG
+      s3 21 s() XCHG
+      s2 26 s() XCHG
+      s1 25 s() XCHG
+      s0 24 s() XCHG
+      23 s() PUSH
+      26 s() PUSH
+      24 s() PUSH
+      $Pool$_fun_computeDFromAdjustedBalances INLINECALLDICT
+      s0 27 s() XCHG
+      IF:<{
+        s0 24 s() XCHG
+        s10 PUSH
+        MUL
+        s1 25 s() XCHG
+        ADD
+        19 s() 23 s() XCHG
+        18 s() 22 s() XCHG
+        17 s() 21 s() XCHG
+        16 s() 20 s() XCHG
+        s15 19 s() XCHG
+        s14 18 s() XCHG
+        s13 17 s() XCHG
+        s12 16 s() XCHG
+        s11 s15 XCHG
+        s10 s14 XCHG
+        s9 s13 XCHG
+        s8 s12 XCHG
+        s7 s11 XCHG
+        s6 s10 XCHG
+        s5 s9 XCHG
+        s4 s8 XCHG
+        s3 s7 XCHG
+        s6 s5 s0 XCHG3
+        s4 24 s() XCHG
+        SWAP
+        s0 25 s() XCHG
+        $Pool$_fun_getY INLINECALLDICT
+        s1 23 s() XCHG
+        SUB
+        DEC
+        s9 PUSH
+        DIV
+      }>ELSE<{
+        s0 24 s() XCHG
+        s9 PUSH
+        MUL
+        s1 22 s() XCHG
+        ADD
+        19 s() 23 s() XCHG
+        18 s() 22 s() XCHG
+        17 s() 21 s() XCHG
+        16 s() 20 s() XCHG
+        s15 19 s() XCHG
+        s14 18 s() XCHG
+        s13 17 s() XCHG
+        s12 16 s() XCHG
+        s11 s15 XCHG
+        s10 s14 XCHG
+        s9 s13 XCHG
+        s8 s12 XCHG
+        s7 s11 XCHG
+        s6 s10 XCHG
+        s5 s9 XCHG
+        s4 s8 XCHG
+        s3 s7 XCHG
+        s6 s0 s5 XCHG3
+        s0 s4 XCHG
+        s0 25 s() XCHG
+        $Pool$_fun_getY INLINECALLDICT
+        s1 22 s() XCHG
+        SUB
+        DEC
+        s10 PUSH
+        DIV
+        21 s() 22 s() XCHG
+      }>
+      20 s() 22 s() XCHG
+      19 s() 21 s() XCHG
+      18 s() 20 s() XCHG
+      17 s() 19 s() XCHG
+      16 s() 18 s() XCHG
+      s15 17 s() XCHG
+      s14 16 s() XCHG
+      s13 s15 XCHG
+      s12 s14 XCHG
+      s11 s13 XCHG
+      s10 s12 XCHG
+      s9 s11 XCHG
+      s8 s10 XCHG
+      s7 s9 XCHG
+      s6 s8 XCHG
+      s5 s7 XCHG
+      s4 s6 XCHG
+      s3 s5 XCHG
+      s4 s0 s3 XCHG3
+    }>ELSE<{
+      6 2 BLKDROP2
+    }>
+    $AmountOut$_constructor_amountOut_feeIn INLINECALLDICT
+  }>
+  $Pool$_fun__burn_notification_validate PROCINLINE:<{
+    s1 s5 XCHG
+    5 BLKDROP
+    s2 POP
+    21 s() 22 s() XCHG
+    20 s() 22 s() XCHG
+    19 s() 22 s() XCHG
+    18 s() 22 s() XCHG
+    17 s() 22 s() XCHG
+    16 s() 22 s() XCHG
+    s15 22 s() XCHG
+    s14 22 s() XCHG
+    s13 22 s() XCHG
+    s12 22 s() XCHG
+    s11 22 s() XCHG
+    s10 22 s() XCHG
+    s9 22 s() XCHG
+    s0 22 s() XCHG
+    s0 s8 XCHG
+    s0 s7 XCHG
+    s0 s6 XCHG
+    5 -ROLL
+    $Pool$_fun_calculate_jetton_wallet_init INLINECALLDICT
+    SWAP
+    9739 PUSHINT
+    s0 s2 XCHG
+    $global_contractAddress INLINECALLDICT
+    SWAP
+    s0 23 s() XCHG
+    __tact_slice_eq_bits INLINECALLDICT
+    s1 22 s() XCHG
+    THROWANYIFNOT
+    19 s() 20 s() XCHG
+    18 s() 19 s() XCHG
+    17 s() 18 s() XCHG
+    16 s() 17 s() XCHG
+    s15 16 s() XCHG
+    15 ROLL
+  }>
+  $SendParameters$_constructor_to_value_bounce_mode PROCINLINE:<{
+    s3 s3 s0 XCHG3
+    PUSHNULL
+    PUSHNULL
+    PUSHNULL
+  }>
+  $Pool$_fun__burn_notification PROCINLINE:<{
+    NIP
+    s5 s6 XCHG2
+    5 BLKDROP
+    s1 s6 XCHG
+    SUB
+        B{b5ee9c72410101010024000043800000000000000000000000000000000000000000000000000000000000000000104aec829d} B>boc <s PUSHSLICE
+    s6 PUSH
+    __tact_slice_eq_bits INLINECALLDICT
+    NOT
+    IF:<{
+      s0 s5 XCHG
+      0 PUSHINT
+      FALSE
+      66 PUSHINT
+      $SendParameters$_constructor_to_value_bounce_mode INLINECALLDICT
+      $global_send INLINECALLDICT
+      DROP
+    }>ELSE<{
+      s5 POP
+    }>
+  }>
+  $JettonData$_constructor_total_supply_mintable_admin_address_jetton_content_jetton_wallet_code PROCINLINE:<{
+  }>
+  $Pool$_fun_get_jetton_data PROCREF:<{
+    s4 s3 s2 PUSH3
+    s4 PUSH
+        MYADDR
+    21 s() 25 s() XCHG
+    20 s() 24 s() XCHG
+    19 s() 23 s() XCHG
+    18 s() 22 s() XCHG
+    17 s() 25 s() XCHG
+    16 s() 24 s() XCHG
+    s15 23 s() XCHG
+    s14 22 s() XCHG
+    s13 25 s() XCHG
+    s12 24 s() XCHG
+    s11 23 s() XCHG
+    s10 22 s() XCHG
+    s9 25 s() XCHG
+    s8 24 s() XCHG
+    s7 23 s() XCHG
+    s6 22 s() XCHG
+    s5 25 s() XCHG
+    s4 24 s() XCHG
+    s3 23 s() XCHG
+    s2 22 s() XCHG
+    s1 25 s() XCHG
+    $Pool$_fun_calculate_jetton_wallet_init INLINECALLDICT
+    $StateInit$_get_code INLINECALLDICT
+    s4 24 s() XCHG
+    s3 23 s() XCHG
+    s2 22 s() XCHG
+    s1 25 s() XCHG
+    $JettonData$_constructor_total_supply_mintable_admin_address_jetton_content_jetton_wallet_code INLINECALLDICT
+    21 s() 25 s() XCHG
+    20 s() 24 s() XCHG
+    19 s() 23 s() XCHG
+    18 s() 22 s() XCHG
+    17 s() 21 s() XCHG
+    16 s() 20 s() XCHG
+    s15 19 s() XCHG
+    s14 18 s() XCHG
+    s13 17 s() XCHG
+    s12 16 s() XCHG
+    s11 s15 XCHG
+    s10 s14 XCHG
+    s9 s13 XCHG
+    s8 s12 XCHG
+    s7 s11 XCHG
+    s6 s10 XCHG
+    s5 s9 XCHG
+  }>
+  $Pool$_fun_get_wallet_address PROCREF:<{
+    $Pool$_fun_calculate_jetton_wallet_init INLINECALLDICT
+    $global_contractAddress INLINECALLDICT
+  }>
+  $Pool$_fun_get_test PROCREF:<{
+    DUP
+  }>
+  $DeployOk$_constructor_queryId PROCINLINE:<{
+  }>
+  toFloat PROCREF:<{
+    64 LSHIFT#
+  }>
+  add PROCREF:<{
+    ADD
+  }>
+  sub PROCREF:<{
+    SUB
+  }>
+  mul PROCREF:<{
+    MUL
+    64 RSHIFT#
+  }>
+  div PROCREF:<{
+    SWAP
+    64 LSHIFT#
+    SWAP
+    DIV
+  }>
+  safeAdd PROCREF:<{
+    ADD
+  }>
+  safeSub PROCREF:<{
+    SUB
+  }>
+  safeMul PROCREF:<{
+    MUL
+    64 RSHIFT#
+  }>
+  safeDiv PROCREF:<{
+    DUP
+    0 EQINT
+    4 THROWIF
+    SWAP
+    64 LSHIFT#
+    SWAP
+    DIV
+  }>
+  sqrtFloat PROCREF:<{
+    DUP
+    INC
+    1 RSHIFT#
+    OVER
+    WHILE:<{
+      2DUP
+      LESS
+    }>DO<{
+      DROP
+      s0 s1 s0 PUSH3
+      DIV
+      ROT
+      ADD
+      1 RSHIFT#
+      SWAP
+    }>
+    2 1 BLKDROP2
+    32 LSHIFT#
+  }>
+  sqrt PROCINLINE:<{
+    DUP
+    0 EQINT
+    IF:<{
+    }>ELSE<{
+      181 PUSHINT
+      s1 s1 PUSH2
+      128 PUSHPOW2
+      GEQ
+      IF:<{
+        NIP
+        128 RSHIFT#
+        3338860677341428842496 PUSHINTX
+        SWAP
+      }>
+      DUP
+      64 PUSHPOW2
+      GEQ
+      IF:<{
+        64 RSHIFT#
+        SWAP
+        32 LSHIFT#
+        SWAP
+      }>
+      DUP
+      32 PUSHPOW2
+      GEQ
+      IF:<{
+        32 RSHIFT#
+        SWAP
+        16 LSHIFT#
+        SWAP
+      }>
+      DUP
+      16 PUSHPOW2
+      GEQ
+      IF:<{
+        16 RSHIFT#
+        SWAP
+        8 LSHIFT#
+        SWAP
+      }>
+      16 PUSHPOW2
+      ADD
+      MUL
+      18 RSHIFT#
+      7 PUSHINT
+      REPEAT:<{
+        2DUP
+        DIV
+        ADD
+        1 RSHIFT#
+      }>
+      TUCK
+      DIV
+      2DUP
+      LESS
+      IF:<{
+        DROP
+      }>ELSE<{
+        NIP
+      }>
+    }>
+  }>
+  $Pool$_internal_binary_ProvideLiquidity PROCINLINE:<{
+    DROP
+    s11 s10 s9 PUSH3
+    s11 PUSH
+        NOP
+    24 s() 27 s() XCHG
+    23 s() 26 s() XCHG
+    22 s() 25 s() XCHG
+    21 s() 27 s() XCHG
+    20 s() 26 s() XCHG
+    19 s() 25 s() XCHG
+    18 s() 27 s() XCHG
+    17 s() 26 s() XCHG
+    16 s() 25 s() XCHG
+    s15 27 s() XCHG
+    s14 26 s() XCHG
+    s13 25 s() XCHG
+    s12 27 s() XCHG
+    s11 26 s() XCHG
+    s10 25 s() XCHG
+    s9 27 s() XCHG
+    s8 26 s() XCHG
+    s7 25 s() XCHG
+    s6 27 s() XCHG
+    s5 26 s() XCHG
+    s4 25 s() XCHG
+    $Pool$_fun_getA INLINECALLDICT
+        B{b5ee9c72410101010024000043800000000000000000000000000000000000000000000000000000000000000000104aec829d} B>boc <s PUSHSLICE
+    s14 PUSH
+    25 s() PUSH
+    ADD
+    s14 PUSH
+    25 s() PUSH
+    ADD
+    22 s() 24 s() XCHG
+    21 s() 23 s() XCHG
+    20 s() 24 s() XCHG
+    19 s() 23 s() XCHG
+    18 s() 24 s() XCHG
+    17 s() 23 s() XCHG
+    16 s() 24 s() XCHG
+    s15 23 s() XCHG
+    s14 24 s() XCHG
+    s13 23 s() XCHG
+    s12 24 s() XCHG
+    s11 23 s() XCHG
+    s10 24 s() XCHG
+    s9 23 s() XCHG
+    s8 24 s() XCHG
+    s7 23 s() XCHG
+    s6 24 s() XCHG
+    s5 23 s() XCHG
+    s4 24 s() XCHG
+    s3 23 s() XCHG
+    s2 24 s() XCHG
+    23 s() PUSH
+    -ROT
+    $Pool$_fun__computeInvariant INLINECALLDICT
+    s13 s12 PUSH2
+    s2 24 s() XCHG
+    $Pool$_fun__computeInvariant INLINECALLDICT
+    s5 PUSH
+    0 EQINT
+    IF:<{
+      DROP
+      25 s() POP
+      s0 20 s() XCHG
+      3000 PUSHINT
+      SUB
+    }>ELSE<{
+      23 s() POP
+      s0 21 s() XCHG
+      22 s() PUSH
+      SUB
+      s4 s(-1) PUXC
+      MUL
+      SWAP
+      s0 22 s() XCHG
+      DIV
+      20 s() 24 s() XCHG
+      20 s() 21 s() XCHG
+    }>
+    s0 23 s() XCHG
+    s1 s11 XCHG
+    ADD
+    s0 21 s() XCHG
+    s1 s9 XCHG
+    ADD
+    17 s() 22 s() XCHG
+    16 s() 21 s() XCHG
+    s15 20 s() XCHG
+    s14 19 s() XCHG
+    s13 18 s() XCHG
+    s12 17 s() XCHG
+    s11 16 s() XCHG
+    s10 s15 XCHG
+    s10 s14 XCHG
+    s0 s13 XCHG
+    s7 s12 XCHG
+    s6 s11 XCHG
+    s5 s10 XCHG
+    s4 s9 XCHG
+    s3 s8 XCHG
+    s7 s1 s3 XCHG3
+    s5 s5 XCHG2
+    s0 s6 XCHG
+    $Pool$_fun__mint_lp INLINECALLDICT
+  }>
+  $Pool$_internal_binary_RefundMe PROCINLINE:<{
+    0 PUSHINT
+    s0 s3 XCHG
+    64 PUSHINT
+    s0 s3 XCHG
+    $Pool$_fun_call_pay_to INLINECALLDICT
+  }>
+  $Pool$_internal_binary_Swap PROCINLINE:<{
+    CONT:<{
+      c2 SAVE
+      SAMEALTSAVE
+      0 PUSHINT
+      DUP
+      64 PUSHINT
+      16 s() PUSH
+      16 s() PUSH
+      16 s() PUSH
+      16 s() PUSH
+          NOP
+      24 s() 32 s() XCHG
+      23 s() 31 s() XCHG
+      22 s() 30 s() XCHG
+      21 s() 29 s() XCHG
+      20 s() 28 s() XCHG
+      19 s() 27 s() XCHG
+      18 s() 26 s() XCHG
+      17 s() 25 s() XCHG
+      16 s() 32 s() XCHG
+      s15 31 s() XCHG
+      s14 30 s() XCHG
+      s13 29 s() XCHG
+      s12 28 s() XCHG
+      s11 27 s() XCHG
+      s10 26 s() XCHG
+      s9 25 s() XCHG
+      s8 32 s() XCHG
+      s7 31 s() XCHG
+      s6 30 s() XCHG
+      s5 29 s() XCHG
+      s4 28 s() XCHG
+      $Pool$_fun_getA INLINECALLDICT
+      s15 s(-1) PUXC
+      s0 23 s() XCHG
+      __tact_slice_eq_bits INLINECALLDICT
+      IF:<{
+        26 s() POP
+        19 s() 21 s() XCHG
+        18 s() 20 s() XCHG
+        17 s() 19 s() XCHG
+        16 s() 18 s() XCHG
+        s15 17 s() XCHG
+        s14 16 s() XCHG
+        s13 PUSH
+        s0 16 s() XCHG
+        s13 PUSH
+        s0 16 s() XCHG
+        s13 s15 XCHG
+        s12 s14 XCHG
+        s11 s13 XCHG
+        s10 s12 XCHG
+        s9 s11 XCHG
+        s8 s10 XCHG
+        s7 s9 XCHG
+        s6 s8 XCHG
+        s5 s7 XCHG
+        s4 s6 XCHG
+        s3 s5 XCHG
+        s2 s4 XCHG
+        s3 27 s() XCHG
+        s2 29 s() XCHG
+        s1 27 s() XCHG
+        s0 29 s() XCHG
+        $Pool$_fun__getSwapFee INLINECALLDICT
+        21 s() 22 s() XCHG
+        20 s() 21 s() XCHG
+        19 s() 20 s() XCHG
+        18 s() 19 s() XCHG
+        17 s() 18 s() XCHG
+        16 s() 17 s() XCHG
+        s15 16 s() XCHG
+        s14 s15 XCHG
+        TRUE
+        s14 PUSH
+        s0 16 s() XCHG
+        s14 PUSH
+        s0 16 s() XCHG
+        s14 s15 XCHG
+        s13 s14 XCHG
+        s12 s13 XCHG
+        s11 s12 XCHG
+        s10 s11 XCHG
+        s9 s10 XCHG
+        s8 s9 XCHG
+        s7 s8 XCHG
+        s6 s7 XCHG
+        s5 s6 XCHG
+        s4 s5 XCHG
+        s4 30 s() XCHG
+        28 s() PUSH
+        s2 s3 XCHG2
+        s1 31 s() XCHG
+        $Pool$_fun__getAmountOut INLINECALLDICT
+        25 s() PUSH
+      }>ELSE<{
+        25 s() POP
+        19 s() 21 s() XCHG
+        18 s() 20 s() XCHG
+        17 s() 19 s() XCHG
+        16 s() 18 s() XCHG
+        s15 17 s() XCHG
+        s14 16 s() XCHG
+        s13 PUSH
+        s0 16 s() XCHG
+        s13 PUSH
+        s0 16 s() XCHG
+        s13 s15 XCHG
+        s12 s14 XCHG
+        s11 s13 XCHG
+        s10 s12 XCHG
+        s9 s11 XCHG
+        s8 s10 XCHG
+        s7 s9 XCHG
+        s6 s8 XCHG
+        s5 s7 XCHG
+        s4 s6 XCHG
+        s3 s5 XCHG
+        s2 s4 XCHG
+        s3 26 s() XCHG
+        s2 29 s() XCHG
+        s1 29 s() XCHG
+        s0 26 s() XCHG
+        $Pool$_fun__getSwapFee INLINECALLDICT
+        21 s() 22 s() XCHG
+        20 s() 21 s() XCHG
+        19 s() 20 s() XCHG
+        18 s() 19 s() XCHG
+        17 s() 18 s() XCHG
+        16 s() 17 s() XCHG
+        s15 16 s() XCHG
+        s14 s15 XCHG
+        FALSE
+        s14 PUSH
+        s0 16 s() XCHG
+        s14 PUSH
+        s0 16 s() XCHG
+        s14 s15 XCHG
+        s13 s14 XCHG
+        s12 s13 XCHG
+        s11 s12 XCHG
+        s10 s11 XCHG
+        s9 s10 XCHG
+        s8 s9 XCHG
+        s7 s8 XCHG
+        s6 s7 XCHG
+        s5 s6 XCHG
+        s4 s5 XCHG
+        s4 27 s() XCHG
+        30 s() PUSH
+        s0 s3 XCHG
+        s2 28 s() XCHG
+        $Pool$_fun__getAmountOut INLINECALLDICT
+        27 s() PUSH
+        s0 25 s() XCHG
+        s0 28 s() XCHG
+        s0 26 s() XCHG
+      }>
+      s7 PUSH
+      1 LESSINT
+      IF:<{
+        27 s() POP
+        TRUE
+      }>ELSE<{
+        s2 PUSH
+        1 LESSINT
+        IF:<{
+          27 s() POP
+          TRUE
+        }>ELSE<{
+          s0 27 s() XCHG
+          s2 PUSH
+          GEQ
+        }>
+      }>
+      IF:<{
+        2DROP
+        21 s() POP
+        22 s() POP
+        18 s() 23 s() XCHG
+        17 s() 22 s() XCHG
+        16 s() 21 s() XCHG
+        s15 20 s() XCHG
+        s14 19 s() XCHG
+        s13 18 s() XCHG
+        s12 17 s() XCHG
+        s11 16 s() XCHG
+        s10 s15 XCHG
+        5 10 BLKSWAP
+        s1 s4 XCHG
+        s1 s3 XCHG
+        0 PUSHINT
+        s0 s3 XCHG
+        64 PUSHINT
+        s3 s1 s3 XCHG3
+        $Pool$_fun_call_pay_to INLINECALLDICT
+      }>ELSE<{
+        26 s() PUSH
+        0 NEQINT
+        IF:<{
+          s0 25 s() XCHG
+          s1 s14 XCHG
+          ADD
+          s13 PUSH
+          25 s() PUSH
+          ADD
+          s1 s13 XCHG
+          SUB
+          s1 16 s() XCHG
+          s0 24 s() XCHG
+          ADD
+          s11 PUSH
+          120 PUSHPOW2DEC
+          GREATER
+          IF:<{
+            TRUE
+          }>ELSE<{
+            23 s() PUSH
+            1 LESSINT
+          }>
+          IFJMP:<{
+            s12 POP
+            20 s() POP
+            18 s() 23 s() XCHG
+            17 s() 22 s() XCHG
+            16 s() 21 s() XCHG
+            s15 20 s() XCHG
+            s14 19 s() XCHG
+            s10 18 s() XCHG
+            s12 17 s() XCHG
+            s11 16 s() XCHG
+            s9 s15 XCHG
+            s11 s14 XCHG
+            s8 s13 XCHG
+            s7 s12 XCHG
+            s6 s11 XCHG
+            s5 s10 XCHG
+            5 5 BLKSWAP
+            s1 s4 XCHG
+            0 PUSHINT
+            s0 s3 XCHG
+            64 PUSHINT
+            s0 s3 XCHG
+            $Pool$_fun_call_pay_to INLINECALLDICT
+            RETALT
+          }>
+          22 s() POP
+          23 s() POP
+          0 PUSHINT
+          DUP
+          20 s() 25 s() XCHG
+          19 s() 24 s() XCHG
+          18 s() 23 s() XCHG
+          17 s() 22 s() XCHG
+          16 s() 21 s() XCHG
+          17 s() 20 s() XCHG
+          s14 19 s() XCHG
+          s13 18 s() XCHG
+          s11 17 s() XCHG
+          s13 16 s() XCHG
+          s10 s15 XCHG
+          s9 s14 XCHG
+          s8 s13 XCHG
+          s7 s12 XCHG
+          s6 s11 XCHG
+          s5 s10 XCHG
+          s4 s9 XCHG
+          s3 s8 XCHG
+          s7 s0 s4 XCHG3
+          s6 s1 s6 XCHG3
+          $Pool$_fun_call_pay_to INLINECALLDICT
+        }>ELSE<{
+          2DUP
+          ADD
+          s1 s15 XCHG
+          SUB
+          s0 25 s() XCHG
+          s1 s13 XCHG
+          ADD
+          s1 17 s() XCHG
+          s0 s13 XCHG
+          ADD
+          s12 PUSH
+          120 PUSHPOW2DEC
+          GREATER
+          IF:<{
+            TRUE
+          }>ELSE<{
+            23 s() PUSH
+            1 LESSINT
+          }>
+          IFJMP:<{
+            s11 POP
+            20 s() POP
+            18 s() 23 s() XCHG
+            17 s() 22 s() XCHG
+            16 s() 21 s() XCHG
+            s15 20 s() XCHG
+            s9 19 s() XCHG
+            s13 18 s() XCHG
+            s12 17 s() XCHG
+            s11 16 s() XCHG
+            s11 s15 XCHG
+            s10 s14 XCHG
+            s8 s13 XCHG
+            s7 s12 XCHG
+            s6 s11 XCHG
+            s5 s10 XCHG
+            5 5 BLKSWAP
+            0 PUSHINT
+            s4 s3 XCHG2
+            64 PUSHINT
+            s0 s3 XCHG
+            $Pool$_fun_call_pay_to INLINECALLDICT
+            RETALT
+          }>
+          22 s() POP
+          23 s() POP
+          0 PUSHINT
+          DUP
+          20 s() 25 s() XCHG
+          19 s() 24 s() XCHG
+          18 s() 23 s() XCHG
+          17 s() 22 s() XCHG
+          17 s() 21 s() XCHG
+          s15 20 s() XCHG
+          s14 19 s() XCHG
+          s13 18 s() XCHG
+          s13 17 s() XCHG
+          s12 16 s() XCHG
+          s10 s15 XCHG
+          s9 s14 XCHG
+          s8 s13 XCHG
+          s7 s12 XCHG
+          s6 s11 XCHG
+          s5 s10 XCHG
+          s4 s9 XCHG
+          s3 s8 XCHG
+          s2 s7 XCHG
+          s4 s6 XCHG
+          s5 s4 s0 XCHG3
+          $Pool$_fun_call_pay_to INLINECALLDICT
+        }>
+      }>
+    }>
+    EXECUTE
+  }>
+  $Pool$_internal_text_ea0cb675c9b967b9a50bcedc0def02414fe6702944446d5bc19fe40d606ae2e7 PROCINLINE:<{
+        BALANCE FIRST
+    10000000 PUSHINT
+    SUB
+    21 s() PUSH
+    0 PUSHINT
+    $Pool$_fun_send_empty_message INLINECALLDICT
+  }>
+  $Pool$_internal_text_a3f981136c4332f7a5f92f98cb86a3d48b37013118eee4d6e292cecb93edbb18 PROCINLINE:<{
+    46438 PUSHINT
+    17 s() PUSH
+    0 GTINT
+    IF:<{
+      16 s() PUSH
+      0 GTINT
+    }>ELSE<{
+      FALSE
+    }>
+    THROWANYIFNOT
+    0 PUSHINT
+    64 PUSHINT
+    19 s() PUSH
+    19 s() PUSH
+    19 s() PUSH
+    $Pool$_fun_call_pay_to INLINECALLDICT
+    s15 POP
+    s15 POP
+    0 PUSHINT
+    s15 s15 XCPU
+    s0 s15 XCHG
+  }>
+  $Pool$_internal_binary_SetFees PROCINLINE:<{
+    20 s() POP
+    20 s() POP
+    20 s() POP
+  }>
+  $Pool$_internal_binary_JettonBurnNotification PROCINLINE:<{
+    __tact_context_get INLINECALLDICT
+    20 s() 28 s() XCHG
+    19 s() 27 s() XCHG
+    18 s() 26 s() XCHG
+    17 s() 25 s() XCHG
+    16 s() 24 s() XCHG
+    s15 23 s() XCHG
+    s14 22 s() XCHG
+    s13 21 s() XCHG
+    s12 28 s() XCHG
+    s11 27 s() XCHG
+    s10 26 s() XCHG
+    s9 25 s() XCHG
+    s8 24 s() XCHG
+    s7 23 s() XCHG
+    s6 22 s() XCHG
+    s5 21 s() XCHG
+    s4 28 s() XCHG
+    s3 27 s() XCHG
+    s2 26 s() XCHG
+    s1 25 s() XCHG
+    s0 24 s() XCHG
+    27 s() PUSH
+    27 s() PUSH
+    27 s() PUSH
+    27 s() PUSH
+    27 s() PUSH
+    27 s() PUSH
+    27 s() PUSH
+    35 s() PUSH
+    $Pool$_fun__burn_notification_validate INLINECALLDICT
+    27 s() PUSH
+    27 s() PUSH
+    27 s() PUSH
+    27 s() PUSH
+    27 s() PUSH
+    27 s() PUSH
+    27 s() PUSH
+    35 s() PUSH
+    $Pool$_fun_burn_notification_hook INLINECALLDICT
+    20 s() 28 s() XCHG
+    19 s() 27 s() XCHG
+    18 s() 26 s() XCHG
+    17 s() 25 s() XCHG
+    16 s() 24 s() XCHG
+    s15 23 s() XCHG
+    s14 22 s() XCHG
+    s13 21 s() XCHG
+    s12 20 s() XCHG
+    s11 19 s() XCHG
+    s10 18 s() XCHG
+    s9 17 s() XCHG
+    s8 16 s() XCHG
+    8 8 BLKSWAP
+    4 4 BLKSWAP
+    $Pool$_fun__burn_notification INLINECALLDICT
+  }>
+  $Pool$_internal_binary_JettonMint PROCINLINE:<{
+    __tact_context_get INLINECALLDICT
+    20 s() 30 s() XCHG
+    19 s() 29 s() XCHG
+    18 s() 28 s() XCHG
+    17 s() 27 s() XCHG
+    16 s() 26 s() XCHG
+    s15 25 s() XCHG
+    s14 24 s() XCHG
+    s13 23 s() XCHG
+    s12 22 s() XCHG
+    s11 21 s() XCHG
+    s10 30 s() XCHG
+    s9 29 s() XCHG
+    s8 28 s() XCHG
+    s7 27 s() XCHG
+    s6 26 s() XCHG
+    s5 25 s() XCHG
+    s4 24 s() XCHG
+    s3 23 s() XCHG
+    s2 22 s() XCHG
+    s1 21 s() XCHG
+    s0 30 s() XCHG
+    23 s() PUSH
+    23 s() PUSH
+    23 s() PUSH
+    33 s() PUSH
+    33 s() PUSH
+    33 s() PUSH
+    33 s() PUSH
+    33 s() PUSH
+    33 s() PUSH
+    33 s() PUSH
+    $Pool$_fun__mint_validate INLINECALLDICT
+    20 s() 30 s() XCHG
+    19 s() 29 s() XCHG
+    18 s() 28 s() XCHG
+    17 s() 27 s() XCHG
+    16 s() 26 s() XCHG
+    s15 25 s() XCHG
+    s14 24 s() XCHG
+    s13 23 s() XCHG
+    s12 22 s() XCHG
+    s11 21 s() XCHG
+    s10 20 s() XCHG
+    s9 19 s() XCHG
+    s8 18 s() XCHG
+    s7 17 s() XCHG
+    s6 16 s() XCHG
+    s5 s15 XCHG
+    s4 s14 XCHG
+    10 4 BLKSWAP
+    $Pool$_fun__mint INLINECALLDICT
+  }>
+  $Pool$_internal_binary_Deploy PROCINLINE:<{
+    $DeployOk$_constructor_queryId INLINECALLDICT
+    $DeployOk$_store_cell INLINECALLDICT
+    $Pool$_fun_notify INLINECALLDICT
+  }>
+  %get_pool_data PROC:<{
+    $Pool$_contract_load INLINECALLDICT
+    $Pool$_fun_get_pool_data INLINECALLDICT
+    9 9 BLKDROP2
+    12 9 BLKDROP2
+    $PoolData$_to_external INLINECALLDICT
+  }>
+  %getAmountOut PROC:<{
+    s0 s2 XCHG
+    __tact_verify_address INLINECALLDICT
+    SWAP
+    __tact_verify_address INLINECALLDICT
+    $Pool$_contract_load INLINECALLDICT
+    20 s() 23 s() XCHG
+    19 s() 22 s() XCHG
+    18 s() 21 s() XCHG
+    17 s() 20 s() XCHG
+    16 s() 19 s() XCHG
+    s15 18 s() XCHG
+    s14 17 s() XCHG
+    s13 16 s() XCHG
+    s12 s15 XCHG
+    s11 s14 XCHG
+    3 11 BLKSWAP
+    $Pool$_fun_getAmountOut INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %getTokenOut PROC:<{
+    $Pool$_contract_load INLINECALLDICT
+    20 s() 22 s() XCHG
+    19 s() 21 s() XCHG
+    18 s() 20 s() XCHG
+    17 s() 19 s() XCHG
+    16 s() 18 s() XCHG
+    s15 17 s() XCHG
+    s14 16 s() XCHG
+    s13 s15 XCHG
+    2 13 BLKSWAP
+    $Pool$_fun_getTokenOut INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %get_expected_liquidity PROC:<{
+    $Pool$_contract_load INLINECALLDICT
+    20 s() 21 s() XCHG
+    19 s() 20 s() XCHG
+    18 s() 19 s() XCHG
+    17 s() 18 s() XCHG
+    16 s() 17 s() XCHG
+    s15 16 s() XCHG
+    15 ROLL
+    $Pool$_fun_get_expected_liquidity INLINECALLDICT
+    18 s() POP
+    16 s() POP
+    15 BLKDROP
+    s5 POP
+    s3 POP
+    2DROP
+    $ExpectedLiquidity$_to_external INLINECALLDICT
+  }>
+  %get_reserve0 PROC:<{
+    $Pool$_contract_load INLINECALLDICT
+    $Pool$_fun_get_reserve0 INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %get_reserve1 PROC:<{
+    $Pool$_contract_load INLINECALLDICT
+    $Pool$_fun_get_reserve1 INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %getReserves PROC:<{
+    $Pool$_contract_load INLINECALLDICT
+    $Pool$_fun_getReserves INLINECALLDICT
+    18 s() POP
+    16 s() POP
+    15 BLKDROP
+    s5 POP
+    s3 POP
+    2DROP
+    $Reserves$_to_external INLINECALLDICT
+  }>
+  %getter_A PROC:<{
+    $Pool$_contract_load INLINECALLDICT
+    $Pool$_fun_getter_A INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %getter_oldInvariant PROC:<{
+    $Pool$_contract_load INLINECALLDICT
+    $Pool$_fun_getter_oldInvariant INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %getter_newInvariant PROC:<{
+    $Pool$_contract_load INLINECALLDICT
+    20 s() 22 s() XCHG
+    19 s() 21 s() XCHG
+    18 s() 20 s() XCHG
+    17 s() 19 s() XCHG
+    16 s() 18 s() XCHG
+    s15 17 s() XCHG
+    s14 16 s() XCHG
+    s13 s15 XCHG
+    2 13 BLKSWAP
+    $Pool$_fun_getter_newInvariant INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %getter_computeDFromAdjustedBalances PROC:<{
+    $Pool$_contract_load INLINECALLDICT
+    20 s() 22 s() XCHG
+    19 s() 21 s() XCHG
+    18 s() 20 s() XCHG
+    17 s() 19 s() XCHG
+    16 s() 18 s() XCHG
+    s15 17 s() XCHG
+    s14 16 s() XCHG
+    s13 s15 XCHG
+    2 13 BLKSWAP
+    $Pool$_fun_getter_computeDFromAdjustedBalances INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %getter_ADD_NONE PROC:<{
+    $Pool$_contract_load INLINECALLDICT
+    $Pool$_fun_getter_ADD_NONE INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %get_jetton_data PROC:<{
+    $Pool$_contract_load INLINECALLDICT
+    $Pool$_fun_get_jetton_data INLINECALLDICT
+    15 5 BLKDROP2
+    6 5 BLKDROP2
+    $JettonData$_to_external INLINECALLDICT
+  }>
+  %get_wallet_address PROC:<{
+    __tact_verify_address INLINECALLDICT
+    $Pool$_contract_load INLINECALLDICT
+    20 s() 21 s() XCHG
+    19 s() 20 s() XCHG
+    18 s() 19 s() XCHG
+    17 s() 18 s() XCHG
+    16 s() 17 s() XCHG
+    s15 16 s() XCHG
+    15 ROLL
+    $Pool$_fun_get_wallet_address INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  %get_test PROC:<{
+    $Pool$_contract_load INLINECALLDICT
+    $Pool$_fun_get_test INLINECALLDICT
+    16 s() POP
+    15 BLKDROP
+    5 1 BLKDROP2
+  }>
+  lazy_deployment_completed PROC:<{
+    c4 PUSH
+    CTOS
+    1 LDI
+    SWAP
+  }>
+  $Pool$_contract_router_internal PROCREF:<{
+    c2 SAVE
+    SAMEALTSAVE
+    SWAP
+    IFJMP:<{
+      DROP
+      TRUE
+    }>
+    0 PUSHINT
+    OVER
+    SBITS
+    31 GTINT
+    IF:<{
+      DROP
+      DUP
+      32 PLDU
+    }>
+    DUP
+    895103077 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $ProvideLiquidity$_load INLINECALLDICT
+      1 4 BLKDROP2
+      $Pool$_internal_binary_ProvideLiquidity INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    1209260035 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $RefundMe$_load INLINECALLDICT
+      1 3 BLKDROP2
+      $Pool$_internal_binary_RefundMe INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    961172390 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $Swap$_load INLINECALLDICT
+      1 5 BLKDROP2
+      $Pool$_internal_binary_Swap INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    1422094576 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $SetFees$_load INLINECALLDICT
+      1 3 BLKDROP2
+      $Pool$_internal_binary_SetFees INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    2078119902 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $JettonBurnNotification$_load INLINECALLDICT
+      1 4 BLKDROP2
+      $Pool$_internal_binary_JettonBurnNotification INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    2310479113 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $JettonMint$_load INLINECALLDICT
+      1 6 BLKDROP2
+      $Pool$_internal_binary_JettonMint INLINECALLDICT
+      TRUE
+    }>
+    DUP
+    2490013878 PUSHINT
+    EQUAL
+    IFJMP:<{
+      DROP
+      $Deploy$_load INLINECALLDICT
+      NIP
+      $Pool$_internal_binary_Deploy INLINECALLDICT
+      TRUE
+    }>
+    0 EQINT
+    IF:<{
+      HASHSU
+      DUP
+      105863668026654593321632421398316463749599632743261294489240727387599681544935 PUSHINT
+      EQUAL
+      IFJMP:<{
+        DROP
+        $Pool$_internal_text_ea0cb675c9b967b9a50bcedc0def02414fe6702944446d5bc19fe40d606ae2e7 INLINECALLDICT
+        TRUE
+        RETALT
+      }>
+      74167830087121333264464117823308728336842240237109798157583806589394739903256 PUSHINT
+      EQUAL
+      IFJMP:<{
+        $Pool$_internal_text_a3f981136c4332f7a5f92f98cb86a3d48b37013118eee4d6e292cecb93edbb18 INLINECALLDICT
+        TRUE
+        RETALT
+      }>
+    }>ELSE<{
+      DROP
+    }>
+    FALSE
+  }>
+  recv_internal PROC:<{
+    SWAP
+    CTOS
+    4 LDU
+    SWAP
+    1 PUSHINT
+    AND
+    NEGATE
+    SWAP
+    LDMSGADDR
+    SWAP
+    __tact_verify_address INLINECALLDICT
+    s0 s4 s2 PUXCPU
+    s0 s3 XCHG
+    4 TUPLE
+    __tact_context SETGLOB
+    s0 s2 XCHG
+    __tact_context_sender SETGLOB
+    $Pool$_contract_load INLINECALLDICT
+    20 s() 22 s() XCHG
+    19 s() 21 s() XCHG
+    18 s() 20 s() XCHG
+    17 s() 19 s() XCHG
+    16 s() 18 s() XCHG
+    s15 17 s() XCHG
+    s14 16 s() XCHG
+    s13 s15 XCHG
+    2 13 BLKSWAP
+    $Pool$_contract_router_internal INLINECALLDICT
+    130 THROWIFNOT
+    $Pool$_contract_store INLINECALLDICT
+  }>
+}END>c

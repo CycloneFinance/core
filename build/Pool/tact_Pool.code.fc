@@ -1,0 +1,709 @@
+#pragma version =0.4.4;
+#pragma allow-post-modification;
+#pragma compute-asm-ltr;
+
+#include "tact_Pool.headers.fc";
+#include "tact_Pool.stdlib.fc";
+#include "tact_Pool.native.fc";
+#include "tact_Pool.constants.fc";
+#include "tact_Pool.storage.fc";
+
+;;
+;; Contract Pool functions
+;;
+
+(slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $Pool$_contract_init(slice $routerAddress, int $lpFee, int $protocolFee, slice $protocolFeesAddress, int $collectedTokenAProtocolFees, int $collectedTokenBProtocolFees, slice $wallet0, slice $wallet1, int $reserve0, int $reserve1, int $total_supply, int $token0PrecisionMultiplier, int $token1PrecisionMultiplier) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = (null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), null(), $PoolParams$_constructor_initialA_futureA_initialTime_futureTime(2000, 2000, 0, 0), null(), null(), null(), null(), false);
+    $self'routerAddress = $routerAddress;
+    $self'lpFee = $lpFee;
+    $self'protocolFee = $protocolFee;
+    $self'protocolFeesAddress = $protocolFeesAddress;
+    $self'collectedTokenAProtocolFees = $collectedTokenAProtocolFees;
+    $self'collectedTokenBProtocolFees = $collectedTokenBProtocolFees;
+    $self'wallet0 = $wallet0;
+    $self'wallet1 = $wallet1;
+    $self'reserve0 = $reserve0;
+    $self'reserve1 = $reserve1;
+    $self'token0PrecisionMultiplier = $token0PrecisionMultiplier;
+    $self'token1PrecisionMultiplier = $token1PrecisionMultiplier;
+    $self'total_supply = $total_supply;
+    $self'mintable = true;
+    $self'owner = $routerAddress;
+    $self'jetton_content = $global_emptyCell();
+    return ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test);
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), ()) $Pool$_fun__mint_validate((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, (int, slice, int, slice) $ctx, (slice, slice, int, cell, int, slice) $msg) impure inline {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    var (($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)) = $ctx;
+    var (($msg'origin, $msg'receiver, $msg'amount, $msg'custom_payload, $msg'forward_ton_amount, $msg'forward_payload)) = $msg;
+    throw_unless(30061, $self'mintable);
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), ());
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), (cell, cell)) $Pool$_fun_calculate_jetton_wallet_init((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, slice $owner_address) impure inline {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    var $fresh$ret_36 = $ExampleJettonWallet$_init_child(__tact_context_sys, $owner_address, $global_myAddress());
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_36);
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), ()) $Pool$_fun__mint((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, (int, slice, int, slice) $ctx, (slice, slice, int, cell, int, slice) $msg) impure inline {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    var (($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)) = $ctx;
+    var (($msg'origin, $msg'receiver, $msg'amount, $msg'custom_payload, $msg'forward_ton_amount, $msg'forward_payload)) = $msg;
+    var ($initCode'code, $initCode'data) = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_calculate_jetton_wallet_init($msg'receiver);
+    $self'total_supply = ($self'total_supply + $msg'amount);
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body_code_data($global_contractAddress(($initCode'code, $initCode'data)), 0, true, 64, $JettonInternalTransfer$_store_cell($JettonInternalTransfer$_constructor_query_id_amount_response_address_from_forward_ton_amount_forward_payload(0, $msg'amount, $msg'origin, $global_myAddress(), $msg'forward_ton_amount, $msg'forward_payload)), $initCode'code, $initCode'data));
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), ());
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), ()) $Pool$_fun__mint_lp((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, slice $to, int $amount) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    var ($msg'origin, $msg'receiver, $msg'amount, $msg'custom_payload, $msg'forward_ton_amount, $msg'forward_payload) = $JettonMint$_constructor_origin_receiver_amount_custom_payload_forward_ton_amount_forward_payload($ctx'sender, $to, $amount, $global_emptyCell(), 0, $global_emptySlice());
+    ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun__mint_validate(($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw), ($msg'origin, $msg'receiver, $msg'amount, $msg'custom_payload, $msg'forward_ton_amount, $msg'forward_payload));
+    ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun__mint(($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw), ($msg'origin, $msg'receiver, $msg'amount, $msg'custom_payload, $msg'forward_ton_amount, $msg'forward_payload));
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), ());
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), int) $Pool$_fun_within1((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, int $a, int $b) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    if (($a > $b)) {
+        var $fresh$ret_59 = (($a - $b) <= 1);
+        return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_59);
+    }
+    var $fresh$ret_60 = (($b - $a) <= 1);
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_60);
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), int) $Pool$_fun_computeDFromAdjustedBalances((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, int $a, int $xp0, int $xp1) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    int $s = ($xp0 + $xp1);
+    if (($s != 0)) {
+        int $prevD = 0;
+        int $d = $s;
+        int $nA = (2 * $a);
+        int $nA_ = ($nA - 1);
+        int $i = 0;
+        repeat (256) {
+            int $dP = ((((($d * $d) / $xp0) * $d) / $xp1) / 4);
+            $prevD = $d;
+            $d = (((($nA * $s) + (2 * $dP)) * $d) / (($nA_ * $d) + (3 * $dP)));
+            $i = $i + 1;
+            if (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_within1($d, $prevD)) {
+                var $fresh$ret_52 = $d;
+                return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_52);
+            }
+        }
+        var $fresh$ret_53 = $d;
+        return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_53);
+    }
+    var $fresh$ret_54 = 0;
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_54);
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), int) $Pool$_fun__computeInvariant((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, int $_a, int $_reserve0, int $_reserve1) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    int $_adjustedReserve0 = ($self'token0PrecisionMultiplier * $_reserve0);
+    int $_adjustedReserve1 = ($self'token1PrecisionMultiplier * $_reserve1);
+    var $fresh$ret_35 = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_computeDFromAdjustedBalances($_a, $_adjustedReserve0, $_adjustedReserve1);
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_35);
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), int) $Pool$_fun_getA((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, (int, int, int, int) $params) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    var (($params'initialA, $params'futureA, $params'initialTime, $params'futureTime)) = $params;
+    if (($global_now() < $params'futureTime)) {
+        if (($params'futureA < $params'initialA)) {
+            int $diff = ($params'initialA - $params'futureA);
+            int $elapsed = ($global_now() - $params'initialTime);
+            int $duration = ($params'futureTime - $params'initialTime);
+            var $fresh$ret_57 = ($params'initialA - (($diff * $elapsed) / $duration));
+            return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_57);
+        }
+    }
+    var $fresh$ret_58 = $params'futureA;
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_58);
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), ()) $Pool$_fun_send_message_nobounce((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, int $_value, slice $_to, cell $_body, int $_mode) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($_to, $_value, false, $_mode, $_body));
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), ());
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), ()) $Pool$_fun_call_pay_to((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, int $amount, int $mode, slice $to_address, int $amount0_out, int $amount1_out) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    cell $body = $PayTo$_store_cell($PayTo$_constructor_owner_tokenAAmount_walletTokenAAddress_tokenBAmount_walletTokenBAddress($to_address, $amount0_out, $self'wallet0, $amount1_out, $self'wallet1));
+    ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_send_message_nobounce($amount, $self'routerAddress, $body, $mode);
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), ());
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), ()) $Pool$_fun_burn_notification_hook((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, (int, slice, int, slice) $ctx, (int, int, slice, slice) $msg) impure inline {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    var (($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)) = $ctx;
+    var (($msg'query_id, $msg'amount, $msg'sender, $msg'response_destination)) = $msg;
+    $self'test = true;
+    int $a = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_getA($PoolParams$_tensor_cast(($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime)));
+    int $jetton_amount = $msg'amount;
+    slice $from_address = $msg'sender;
+    int $amount0_out = (($jetton_amount * $self'reserve0) / $self'total_supply);
+    int $amount1_out = (($jetton_amount * $self'reserve1) / $self'total_supply);
+    $self'reserve0 = $self'reserve0 - $amount0_out;
+    $self'reserve1 = $self'reserve1 - $amount1_out;
+    ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_call_pay_to(0, 64, $from_address, $amount0_out, $amount1_out);
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), ());
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), (int, int, slice, slice, int, int, slice, int, int)) $Pool$_fun_get_pool_data((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    var $fresh$ret_37 = $PoolData$_constructor_reserve0_reserve1_token0Address_token1Address_lpFee_protocolFee_protocolFeeAddress_collectedToken0ProtocolFee_collectedToken1ProtocolFee($self'reserve0, $self'reserve1, $self'wallet0, $self'wallet1, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees);
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_37);
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), int) $Pool$_fun_getSwapFee((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, slice $sender, slice $tokenIn, slice $tokenOut, slice $data) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    var $fresh$ret_50 = 50;
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_50);
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), int) $Pool$_fun__getSwapFee((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, slice $sender, slice $tokenIn, slice $tokenOut) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    slice $sd = $Context$_get_sender(__tact_context_get());
+    var $fresh$ret_49 = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_getSwapFee($sender, $tokenIn, $tokenOut, $sd);
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_49);
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), int) $Pool$_fun_getAmountOut((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, slice $tokenIn, slice $sender, int $amountIn) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    int $out = 0;
+    int $gA = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_getA($PoolParams$_tensor_cast(($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime)));
+    $self'test = ( __tact_slice_eq_bits($self'wallet0, $tokenIn) );
+    int $swapFee = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun__getSwapFee($sender, $self'wallet0, $self'wallet1);
+    var $fresh$ret_38 = $out;
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_38);
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), int) $Pool$_fun_getTokenOut((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, int $amount0, int $amount1) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    int $liquidity = 0;
+    int $a = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_getA($PoolParams$_tensor_cast(($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime)));
+    int $newInvariant = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun__computeInvariant($a, ($self'reserve0 + $amount0), ($self'reserve1 + $amount1));
+    int $oldInvariant = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun__computeInvariant($a, $self'reserve0, $self'reserve1);
+    if (($self'total_supply == 0)) {
+        $liquidity = ($newInvariant - 3000);
+    } else {
+        $liquidity = (($self'total_supply * ($newInvariant - $oldInvariant)) / $oldInvariant);
+    }
+    var $fresh$ret_39 = $liquidity;
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_39);
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), (int, int)) $Pool$_fun_get_expected_liquidity((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, int $amount) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    int $amount0_out = (($amount * $self'reserve0) / $self'total_supply);
+    int $amount1_out = (($amount * $self'reserve1) / $self'total_supply);
+    var $fresh$ret_40 = $ExpectedLiquidity$_constructor_amount0_amount1($amount0_out, $amount1_out);
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_40);
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), int) $Pool$_fun_get_reserve0((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    var $fresh$ret_41 = $self'reserve0;
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_41);
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), int) $Pool$_fun_get_reserve1((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    var $fresh$ret_42 = $self'reserve1;
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_42);
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), (int, int)) $Pool$_fun_getReserves((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    var $fresh$ret_43 = $Reserves$_constructor_reserve0_reserve1($self'reserve0, $self'reserve1);
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_43);
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), int) $Pool$_fun_getter_A((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    var $fresh$ret_44 = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_getA($PoolParams$_tensor_cast(($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime)));
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_44);
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), int) $Pool$_fun_getter_oldInvariant((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    int $a = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_getA($PoolParams$_tensor_cast(($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime)));
+    var $fresh$ret_45 = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun__computeInvariant($a, $self'reserve0, $self'reserve1);
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_45);
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), int) $Pool$_fun_getter_newInvariant((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, int $amount0, int $amount1) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    int $a = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_getA($PoolParams$_tensor_cast(($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime)));
+    var $fresh$ret_46 = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun__computeInvariant($a, ($self'reserve0 + $amount0), ($self'reserve1 + $amount1));
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_46);
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), int) $Pool$_fun_getter_computeDFromAdjustedBalances((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, int $xp0, int $xp1) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    int $a = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_getA($PoolParams$_tensor_cast(($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime)));
+    var $fresh$ret_47 = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_computeDFromAdjustedBalances($a, $xp0, $xp1);
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_47);
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), slice) $Pool$_fun_getter_ADD_NONE((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    var $fresh$ret_48 = __gen_slice_address_61ab4641fa30d9310391025086eec65d200d79268e1b7cd402565e01ba64be3c();
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_48);
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), ()) $Pool$_fun_send_empty_message((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, int $_value, slice $_to, int $_mode) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    $global_send($SendParameters$_constructor_to_value_bounce_mode_body($_to, $_value, true, $_mode, $global_emptyCell()));
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), ());
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), int) $Pool$_fun_getY((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, int $a, int $x, int $d) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    int $c = (($d * $d) / ($x * 2));
+    $c = (($c * $d) / ($a * 4));
+    int $b = ($x + ($d / (2 * $a)));
+    int $yPrev = 0;
+    int $y = $d;
+    int $i = 0;
+    repeat (256) {
+        $yPrev = $y;
+        $y = ((($y * $y) + $c) / ((($y * 2) + $b) - $d));
+        $i = $i + 1;
+        if (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_within1($y, $yPrev)) {
+            var $fresh$ret_55 = $y;
+            return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_55);
+        }
+    }
+    var $fresh$ret_56 = $y;
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_56);
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), (int, int)) $Pool$_fun__getAmountOut((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, int $a, int $swapFee, int $amountIn, int $reserve0, int $reserve1, int $token0In) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    int $dy = 0;
+    int $feeIn = 0;
+    if (($amountIn != 0)) {
+        int $adjustedReserve0 = ($reserve0 * $self'token0PrecisionMultiplier);
+        int $adjustedReserve1 = ($reserve1 * $self'token1PrecisionMultiplier);
+        $feeIn = (($amountIn * $swapFee) / 10000);
+        int $feeDeductedAmountIn = ($amountIn - $feeIn);
+        int $d = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_computeDFromAdjustedBalances($a, $adjustedReserve0, $adjustedReserve1);
+        if ($token0In) {
+            int $x = ($adjustedReserve0 + ($feeDeductedAmountIn * $self'token0PrecisionMultiplier));
+            int $y = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_getY($a, $x, $d);
+            $dy = ((($adjustedReserve1 - $y) - 1) / $self'token1PrecisionMultiplier);
+        } else {
+            int $x = ($adjustedReserve1 + ($feeDeductedAmountIn * $self'token1PrecisionMultiplier));
+            int $y = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_getY($a, $x, $d);
+            $dy = ((($adjustedReserve0 - $y) - 1) / $self'token0PrecisionMultiplier);
+        }
+    }
+    var $fresh$ret_51 = $AmountOut$_constructor_amountOut_feeIn($dy, $feeIn);
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_51);
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), ()) $Pool$_fun__burn_notification_validate((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, (int, slice, int, slice) $ctx, (int, int, slice, slice) $msg) impure inline {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    var (($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)) = $ctx;
+    var (($msg'query_id, $msg'amount, $msg'sender, $msg'response_destination)) = $msg;
+    var ($initCode'code, $initCode'data) = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_calculate_jetton_wallet_init($msg'sender);
+    throw_unless(9739, ( __tact_slice_eq_bits($global_contractAddress(($initCode'code, $initCode'data)), $ctx'sender) ));
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), ());
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), ()) $Pool$_fun__burn_notification((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, (int, slice, int, slice) $ctx, (int, int, slice, slice) $msg) impure inline {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    var (($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw)) = $ctx;
+    var (($msg'query_id, $msg'amount, $msg'sender, $msg'response_destination)) = $msg;
+    $self'total_supply = ($self'total_supply - $msg'amount);
+    if (( ~ __tact_slice_eq_bits(__gen_slice_address_61ab4641fa30d9310391025086eec65d200d79268e1b7cd402565e01ba64be3c(), $msg'response_destination) )) {
+        $global_send($SendParameters$_constructor_to_value_bounce_mode($msg'response_destination, 0, false, 66));
+    }
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), ());
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), (int, int, slice, cell, cell)) $Pool$_fun_get_jetton_data((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    var $fresh$ret_61 = $JettonData$_constructor_total_supply_mintable_admin_address_jetton_content_jetton_wallet_code($self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $StateInit$_get_code(($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_calculate_jetton_wallet_init($global_myAddress())));
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_61);
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), slice) $Pool$_fun_get_wallet_address((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, slice $owner_address) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    var ($initCode'code, $initCode'data) = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_calculate_jetton_wallet_init($owner_address);
+    var $fresh$ret_62 = $global_contractAddress(($initCode'code, $initCode'data));
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_62);
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), int) $Pool$_fun_get_test((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self) impure inline_ref {
+    var (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)) = $self;
+    var $fresh$ret_63 = $self'test;
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), $fresh$ret_63);
+}
+
+;;
+;; Receivers of a Contract Pool
+;;
+
+(((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int)), ()) $Pool$_internal_binary_ProvideLiquidity((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, (slice, int, int, int) $src) impure inline {
+    var ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test) = $self;
+    var ($src'fromAddress, $src'jettonAmount0, $src'jettonAmount1, $src'minLPOut) = $src;
+    int $a = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_getA($PoolParams$_tensor_cast(($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime)));
+    int $tot_am0 = $src'jettonAmount0;
+    int $tot_am1 = $src'jettonAmount1;
+    slice $user_address = $src'fromAddress;
+    int $liquidity = 0;
+    slice $to = __gen_slice_address_61ab4641fa30d9310391025086eec65d200d79268e1b7cd402565e01ba64be3c();
+    int $newInvariant = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun__computeInvariant($a, ($self'reserve0 + $tot_am0), ($self'reserve1 + $tot_am1));
+    int $oldInvariant = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun__computeInvariant($a, $self'reserve0, $self'reserve1);
+    if (($self'total_supply == 0)) {
+        $liquidity = ($newInvariant - 3000);
+    } else {
+        $liquidity = (($self'total_supply * ($newInvariant - $oldInvariant)) / $oldInvariant);
+        $to = $user_address;
+    }
+    $self'reserve0 = $self'reserve0 + $tot_am0;
+    $self'reserve1 = $self'reserve1 + $tot_am1;
+    ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun__mint_lp($to, $liquidity);
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), ());
+}
+
+(((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int)), ()) $Pool$_internal_binary_RefundMe((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, (int, int, slice) $src) impure inline {
+    var ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test) = $self;
+    var ($src'tot_am0, $src'tot_am1, $src'user_address) = $src;
+    int $tot_am0 = $src'tot_am0;
+    int $tot_am1 = $src'tot_am1;
+    slice $user_address = $src'user_address;
+    ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_call_pay_to(0, 64, $user_address, $tot_am0, $tot_am1);
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), ());
+}
+
+(((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int)), ()) $Pool$_internal_binary_Swap((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, (slice, int, slice, slice, int) $src) impure inline {
+    var ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test) = $self;
+    var ($src'fromAddress, $src'jettonAmount, $src'tokenWallet, $src'toAddress, $src'minOutput) = $src;
+    slice $from_user_address = $src'fromAddress;
+    slice $token_wallet = $src'tokenWallet;
+    int $amount = $src'jettonAmount;
+    int $min_out = $src'minOutput;
+    int $out = 0;
+    int $protocol_fee_out = 0;
+    int $tmp_am_0 = 0;
+    int $tmp_am_1 = 0;
+    int $mode = 64;
+    int $gA = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_getA($PoolParams$_tensor_cast(($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime)));
+    if (( __tact_slice_eq_bits($self'wallet0, $token_wallet) )) {
+        int $swapFee = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun__getSwapFee($src'toAddress, $self'wallet0, $self'wallet1);
+        var ($ao'amountOut, $ao'feeIn) = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun__getAmountOut($gA, $swapFee, $amount, $self'reserve0, $self'reserve1, true);
+        $out = $ao'amountOut;
+        $protocol_fee_out = $ao'feeIn;
+        $tmp_am_0 = $amount;
+    } else {
+        int $swapFee = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun__getSwapFee($src'toAddress, $self'wallet1, $self'wallet0);
+        var ($ao'amountOut, $ao'feeIn) = ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun__getAmountOut($gA, $swapFee, $amount, $self'reserve1, $self'reserve0, false);
+        $out = $ao'amountOut;
+        $protocol_fee_out = $ao'feeIn;
+        $tmp_am_1 = $amount;
+    }
+    if (( (($self'total_supply <= 0)) ? (true) : (( (($out <= 0)) ? (true) : (($min_out >= $out)) )) )) {
+        ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_call_pay_to(0, 64, $from_user_address, $tmp_am_0, $tmp_am_1);
+        return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), ());
+    }
+    if (($tmp_am_0 != 0)) {
+        $self'reserve0 = $self'reserve0 + $amount;
+        $self'reserve1 = $self'reserve1 - ($out + $protocol_fee_out);
+        $self'collectedTokenBProtocolFees = $self'collectedTokenBProtocolFees + $protocol_fee_out;
+        if (( (($self'reserve0 > 1329227995784915872903807060280344575)) ? (true) : (($self'reserve1 <= 0)) )) {
+            ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_call_pay_to(0, 64, $from_user_address, $tmp_am_0, $tmp_am_1);
+            return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), ());
+        }
+        ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_call_pay_to(0, $mode, $from_user_address, 0, $out);
+    } else {
+        $self'reserve0 = $self'reserve0 - ($out + $protocol_fee_out);
+        $self'reserve1 = $self'reserve1 + $amount;
+        $self'collectedTokenAProtocolFees = $self'collectedTokenAProtocolFees + $protocol_fee_out;
+        if (( (($self'reserve1 > 1329227995784915872903807060280344575)) ? (true) : (($self'reserve0 <= 0)) )) {
+            ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_call_pay_to(0, 64, $from_user_address, $tmp_am_0, $tmp_am_1);
+            return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), ());
+        }
+        ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_call_pay_to(0, $mode, $from_user_address, $out, 0);
+    }
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), ());
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), ()) $Pool$_internal_text_ea0cb675c9b967b9a50bcedc0def02414fe6702944446d5bc19fe40d606ae2e7((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self) impure inline {
+    var ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test) = $self;
+    ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_send_empty_message(($global_myBalance() - 10000000), $self'routerAddress, 0);
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), ());
+}
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), ()) $Pool$_internal_text_a3f981136c4332f7a5f92f98cb86a3d48b37013118eee4d6e292cecb93edbb18((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self) impure inline {
+    var ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test) = $self;
+    throw_unless(46438, ( (($self'collectedTokenAProtocolFees > 0)) ? (($self'collectedTokenBProtocolFees > 0)) : (false) ));
+    ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_call_pay_to(0, 64, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees);
+    $self'collectedTokenAProtocolFees = 0;
+    $self'collectedTokenBProtocolFees = 0;
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), ());
+}
+
+(((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int)), ()) $Pool$_internal_binary_SetFees((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, (int, int, slice) $src) impure inline {
+    var ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test) = $self;
+    var ($src'newLPFee, $src'newProtocolFees, $src'newProtocolFeeAddress) = $src;
+    int $new_lp_fee = $src'newLPFee;
+    int $new_protocol_fee = $src'newProtocolFees;
+    slice $new_protocol_fee_address = $src'newProtocolFeeAddress;
+    $self'lpFee = $new_lp_fee;
+    $self'protocolFee = $new_protocol_fee;
+    $self'protocolFeesAddress = $new_protocol_fee_address;
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), ());
+}
+
+(((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int)), ()) $Pool$_internal_binary_JettonBurnNotification((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, (int, int, slice, slice) $msg) impure inline {
+    var ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test) = $self;
+    var ($msg'query_id, $msg'amount, $msg'sender, $msg'response_destination) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun__burn_notification_validate(($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw), ($msg'query_id, $msg'amount, $msg'sender, $msg'response_destination));
+    ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_burn_notification_hook(($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw), ($msg'query_id, $msg'amount, $msg'sender, $msg'response_destination));
+    ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun__burn_notification(($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw), ($msg'query_id, $msg'amount, $msg'sender, $msg'response_destination));
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), ());
+}
+
+(((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int)), ()) $Pool$_internal_binary_JettonMint((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, (slice, slice, int, cell, int, slice) $msg) impure inline {
+    var ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test) = $self;
+    var ($msg'origin, $msg'receiver, $msg'amount, $msg'custom_payload, $msg'forward_ton_amount, $msg'forward_payload) = $msg;
+    var ($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw) = __tact_context_get();
+    ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun__mint_validate(($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw), ($msg'origin, $msg'receiver, $msg'amount, $msg'custom_payload, $msg'forward_ton_amount, $msg'forward_payload));
+    ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun__mint(($ctx'bounced, $ctx'sender, $ctx'value, $ctx'raw), ($msg'origin, $msg'receiver, $msg'amount, $msg'custom_payload, $msg'forward_ton_amount, $msg'forward_payload));
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), ());
+}
+
+(((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int)), ()) $Pool$_internal_binary_Deploy((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) $self, (int) $deploy) impure inline {
+    var ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test) = $self;
+    var ($deploy'queryId) = $deploy;
+    ($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test)~$Pool$_fun_notify($DeployOk$_store_cell($DeployOk$_constructor_queryId($deploy'queryId)));
+    return (($self'routerAddress, $self'lpFee, $self'protocolFee, $self'protocolFeesAddress, $self'collectedTokenAProtocolFees, $self'collectedTokenBProtocolFees, $self'wallet0, $self'wallet1, $self'reserve0, $self'reserve1, $self'token0PrecisionMultiplier, $self'token1PrecisionMultiplier, ($self'poolParams'initialA, $self'poolParams'futureA, $self'poolParams'initialTime, $self'poolParams'futureTime), $self'total_supply, $self'mintable, $self'owner, $self'jetton_content, $self'test), ());
+}
+
+;;
+;; Get methods of a Contract Pool
+;;
+
+_ %get_pool_data() method_id(81689) {
+    var self = $Pool$_contract_load();
+    var res = self~$Pool$_fun_get_pool_data();
+    return $PoolData$_to_external(res);
+}
+
+_ %getAmountOut(slice $tokenIn, slice $sender, int $amountIn) method_id(88101) {
+    slice $tokenIn = __tact_verify_address($tokenIn);
+    slice $sender = __tact_verify_address($sender);
+    int $amountIn = $amountIn;
+    var self = $Pool$_contract_load();
+    var res = self~$Pool$_fun_getAmountOut($tokenIn, $sender, $amountIn);
+    return res;
+}
+
+_ %getTokenOut(int $amount0, int $amount1) method_id(74017) {
+    int $amount0 = $amount0;
+    int $amount1 = $amount1;
+    var self = $Pool$_contract_load();
+    var res = self~$Pool$_fun_getTokenOut($amount0, $amount1);
+    return res;
+}
+
+_ %get_expected_liquidity(int $amount) method_id(97539) {
+    int $amount = $amount;
+    var self = $Pool$_contract_load();
+    var res = self~$Pool$_fun_get_expected_liquidity($amount);
+    return $ExpectedLiquidity$_to_external(res);
+}
+
+_ %get_reserve0() method_id(96532) {
+    var self = $Pool$_contract_load();
+    var res = self~$Pool$_fun_get_reserve0();
+    return res;
+}
+
+_ %get_reserve1() method_id(92469) {
+    var self = $Pool$_contract_load();
+    var res = self~$Pool$_fun_get_reserve1();
+    return res;
+}
+
+_ %getReserves() method_id(80215) {
+    var self = $Pool$_contract_load();
+    var res = self~$Pool$_fun_getReserves();
+    return $Reserves$_to_external(res);
+}
+
+_ %getter_A() method_id(82491) {
+    var self = $Pool$_contract_load();
+    var res = self~$Pool$_fun_getter_A();
+    return res;
+}
+
+_ %getter_oldInvariant() method_id(118678) {
+    var self = $Pool$_contract_load();
+    var res = self~$Pool$_fun_getter_oldInvariant();
+    return res;
+}
+
+_ %getter_newInvariant(int $amount0, int $amount1) method_id(103293) {
+    int $amount0 = $amount0;
+    int $amount1 = $amount1;
+    var self = $Pool$_contract_load();
+    var res = self~$Pool$_fun_getter_newInvariant($amount0, $amount1);
+    return res;
+}
+
+_ %getter_computeDFromAdjustedBalances(int $xp0, int $xp1) method_id(72368) {
+    int $xp0 = $xp0;
+    int $xp1 = $xp1;
+    var self = $Pool$_contract_load();
+    var res = self~$Pool$_fun_getter_computeDFromAdjustedBalances($xp0, $xp1);
+    return res;
+}
+
+_ %getter_ADD_NONE() method_id(105097) {
+    var self = $Pool$_contract_load();
+    var res = self~$Pool$_fun_getter_ADD_NONE();
+    return res;
+}
+
+_ %get_jetton_data() method_id(106029) {
+    var self = $Pool$_contract_load();
+    var res = self~$Pool$_fun_get_jetton_data();
+    return $JettonData$_to_external(res);
+}
+
+_ %get_wallet_address(slice $owner_address) method_id(103289) {
+    slice $owner_address = __tact_verify_address($owner_address);
+    var self = $Pool$_contract_load();
+    var res = self~$Pool$_fun_get_wallet_address($owner_address);
+    return res;
+}
+
+_ %get_test() method_id(76013) {
+    var self = $Pool$_contract_load();
+    var res = self~$Pool$_fun_get_test();
+    return res;
+}
+
+_ lazy_deployment_completed() method_id {
+    return get_data().begin_parse().load_int(1);
+}
+
+;;
+;; Routing of a Contract Pool
+;;
+
+((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int), int) $Pool$_contract_router_internal((slice, int, int, slice, int, int, slice, slice, int, int, int, int, (int, int, int, int), int, int, slice, cell, int) self, int msg_bounced, slice in_msg) impure inline_ref {
+    ;; Handle bounced messages
+    if (msg_bounced) {
+        return (self, true);
+    }
+    
+    ;; Parse incoming message
+    int op = 0;
+    if (slice_bits(in_msg) >= 32) {
+        op = in_msg.preload_uint(32);
+    }
+    
+    
+    ;; Receive ProvideLiquidity message
+    if (op == 895103077) {
+        var msg = in_msg~$ProvideLiquidity$_load();
+        self~$Pool$_internal_binary_ProvideLiquidity(msg);
+        return (self, true);
+    }
+    
+    ;; Receive RefundMe message
+    if (op == 1209260035) {
+        var msg = in_msg~$RefundMe$_load();
+        self~$Pool$_internal_binary_RefundMe(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Swap message
+    if (op == 961172390) {
+        var msg = in_msg~$Swap$_load();
+        self~$Pool$_internal_binary_Swap(msg);
+        return (self, true);
+    }
+    
+    ;; Receive SetFees message
+    if (op == 1422094576) {
+        var msg = in_msg~$SetFees$_load();
+        self~$Pool$_internal_binary_SetFees(msg);
+        return (self, true);
+    }
+    
+    ;; Receive JettonBurnNotification message
+    if (op == 0x7bdd97de) {
+        var msg = in_msg~$JettonBurnNotification$_load();
+        self~$Pool$_internal_binary_JettonBurnNotification(msg);
+        return (self, true);
+    }
+    
+    ;; Receive JettonMint message
+    if (op == 2310479113) {
+        var msg = in_msg~$JettonMint$_load();
+        self~$Pool$_internal_binary_JettonMint(msg);
+        return (self, true);
+    }
+    
+    ;; Receive Deploy message
+    if (op == 2490013878) {
+        var msg = in_msg~$Deploy$_load();
+        self~$Pool$_internal_binary_Deploy(msg);
+        return (self, true);
+    }
+    
+    ;; Text Receivers
+    if (op == 0) {
+        var text_op = slice_hash(in_msg);
+        
+        ;; Receive "reset_gas" message
+        if (text_op == 0xea0cb675c9b967b9a50bcedc0def02414fe6702944446d5bc19fe40d606ae2e7) {
+            self~$Pool$_internal_text_ea0cb675c9b967b9a50bcedc0def02414fe6702944446d5bc19fe40d606ae2e7();
+            return (self, true);
+        }
+        
+        ;; Receive "collect_fees" message
+        if (text_op == 0xa3f981136c4332f7a5f92f98cb86a3d48b37013118eee4d6e292cecb93edbb18) {
+            self~$Pool$_internal_text_a3f981136c4332f7a5f92f98cb86a3d48b37013118eee4d6e292cecb93edbb18();
+            return (self, true);
+        }
+    }
+    
+    return (self, false);
+}
+
+() recv_internal(int msg_value, cell in_msg_cell, slice in_msg) impure {
+    
+    ;; Context
+    var cs = in_msg_cell.begin_parse();
+    var msg_flags = cs~load_uint(4);
+    var msg_bounced = -(msg_flags & 1);
+    slice msg_sender_addr = __tact_verify_address(cs~load_msg_addr());
+    __tact_context = (msg_bounced, msg_sender_addr, msg_value, cs);
+    __tact_context_sender = msg_sender_addr;
+    
+    ;; Load contract data
+    var self = $Pool$_contract_load();
+    
+    ;; Handle operation
+    int handled = self~$Pool$_contract_router_internal(msg_bounced, in_msg);
+    
+    ;; Throw if not handled
+    throw_unless(130, handled);
+    
+    ;; Persist state
+    $Pool$_contract_store(self);
+}
